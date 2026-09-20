@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0f2e5a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="শিক্ষক সংকট">
+<title>শিক্ষক সংকট — রাঙামাটি</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><rect width='180' height='180' fill='%230f2e5a' rx='36'/><text x='50%' y='58%' font-size='90' fill='white' text-anchor='middle' font-family='sans-serif' font-weight='700'>শি</text></svg>">
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'><rect width='512' height='512' fill='%230f2e5a' rx='100'/><text x='50%' y='58%' font-size='260' fill='white' text-anchor='middle' font-family='sans-serif' font-weight='700'>শি</text></svg>">
+<style>
+:root{
+  --navy:#0f2e5a;--navy2:#1d4f8f;--navy-soft:#e8eef8;
+  --red:#c02a2a;--red-soft:#fdeaea;
+  --green:#0f7a4a;--green-soft:#e3f4ec;
+  --amber:#b86a00;--amber-soft:#fdf3e0;
+  --purple:#6a1b9a;--purple-soft:#f2e8fa;
+  --ink:#0d1421;--ink2:#3d4655;--ink3:#6b7583;
+  --line:#e4e8ef;--line2:#eef1f6;
+  --bg:#f4f6fa;--white:#fff;
+  --r:14px;--r-sm:10px;
+  --shadow:0 1px 2px rgba(15,46,90,.05), 0 4px 14px rgba(15,46,90,.05);
+  --shadow-lg:0 8px 28px rgba(15,46,90,.14);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;font-family:'Noto Sans Bengali',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{padding-bottom:78px}
+
+/* TOP BAR */
+.topbar{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(15,46,90,.18)}
+.topbar .logo{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:18px;font-weight:700;flex-shrink:0}
+.topbar .ttl{flex:1;min-width:0}
+.topbar h1{font-size:15px;font-weight:700;margin:0;line-height:1.2}
+.topbar .sub{font-size:11px;opacity:.78;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.install-btn{background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:8px 14px;border-radius:20px;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+.install-btn:hover{background:rgba(255,255,255,.28)}
+
+.content{padding:14px;max-width:920px;margin:0 auto}
+.view{display:none}
+.view.active{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.card{background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);margin-bottom:12px;border:1px solid var(--line)}
+.card-title{font-size:14px;font-weight:700;color:var(--navy);margin:0 0 12px;display:flex;align-items:center;gap:8px}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+.stat{background:var(--white);border-radius:var(--r);padding:14px;border:1px solid var(--line);box-shadow:var(--shadow);cursor:pointer;position:relative;overflow:hidden;transition:transform .12s}
+.stat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--navy)}
+.stat.red::before{background:var(--red)}
+.stat.green::before{background:var(--green)}
+.stat.purple::before{background:var(--purple)}
+.stat:active{transform:scale(.98)}
+.stat .num{font-size:24px;font-weight:700;color:var(--navy);line-height:1}
+.stat.red .num{color:var(--red)}.stat.green .num{color:var(--green)}.stat.purple .num{color:var(--purple)}
+.stat .lbl{font-size:11.5px;color:var(--ink3);margin-top:5px;font-weight:500}
+
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:var(--r-sm);font-family:inherit;font-size:14px;background:#fafbfd;color:var(--ink);transition:border-color .15s,background .15s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--navy2);background:#fff;box-shadow:0 0 0 3px rgba(29,79,143,.08)}
+.field textarea{resize:vertical;min-height:80px;line-height:1.55}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 18px;border:none;border-radius:var(--r-sm);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:transform .1s;text-decoration:none}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 2px 8px rgba(15,46,90,.2)}
+.btn-secondary{background:var(--navy-soft);color:var(--navy)}
+.btn-danger{background:var(--red-soft);color:var(--red)}
+.btn-block{display:flex;width:100%}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.btn-row .btn{flex:1;min-width:110px}
+
+/* FILTERS */
+.filters{background:var(--white);border-radius:var(--r);padding:12px;margin-bottom:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.filters-sticky{position:sticky;top:calc(62px + env(safe-area-inset-top));z-index:50}
+.filter-row{display:flex;gap:8px;margin-bottom:8px}
+.filter-row:last-child{margin-bottom:0}
+.filter-row > *{flex:1;min-width:0}
+.filter-row select,.filter-row input{padding:11px 12px;border:1.5px solid var(--line);border-radius:var(--r-sm);font-family:inherit;font-size:13.5px;background:#fafbfd;color:var(--ink);width:100%;font-weight:500}
+.filter-row select:focus,.filter-row input:focus{outline:none;border-color:var(--navy2);background:#fff}
+.filter-row .primary{background:var(--navy-soft);border-color:var(--navy-soft);color:var(--navy);font-weight:700}
+.filter-reset{background:none;border:1.5px solid var(--line);border-radius:var(--r-sm);color:var(--red);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;padding:11px 14px;white-space:nowrap}
+.filter-info{font-size:12px;color:var(--ink3);padding:8px 4px 2px;display:flex;justify-content:space-between;align-items:center}
+.filter-info .count{font-weight:700;color:var(--navy)}
+
+/* SCHOOL ITEM */
+.school-item{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;margin-bottom:8px;cursor:pointer;box-shadow:var(--shadow);position:relative;transition:transform .1s}
+.school-item:active{transform:scale(.99)}
+.school-item .serial{position:absolute;top:12px;right:14px;font-size:11px;color:var(--ink3);font-weight:600;background:var(--line2);padding:3px 8px;border-radius:20px}
+.school-item .name{font-weight:600;color:var(--navy);font-size:14px;line-height:1.35;padding-right:48px;letter-spacing:-.1px}
+.school-item .teacher{font-size:12px;color:var(--ink3);margin-top:5px;display:flex;align-items:center;gap:5px}
+.school-item .row2{font-size:11.8px;color:var(--ink3);display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:5px}
+.school-item .row2 a{color:var(--navy2);text-decoration:none;font-weight:500}
+.school-item .badges{margin-top:8px;display:flex;gap:4px;flex-wrap:wrap}
+.badge{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600;letter-spacing:.2px}
+.badge.vac{background:var(--red-soft);color:var(--red)}
+.badge.acting{background:var(--amber-soft);color:var(--amber)}
+.badge.data{background:var(--green-soft);color:var(--green)}
+.badge.media{background:var(--purple-soft);color:var(--purple)}
+
+.empty{text-align:center;padding:40px 20px;color:var(--ink3);font-size:13px}
+.empty .big{font-size:42px;margin-bottom:10px;opacity:.4}
+.empty .msg{font-size:13.5px;color:var(--ink2);font-weight:500}
+
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(6,1fr);padding-bottom:env(safe-area-inset-bottom)}
+.bnav button{background:none;border:none;padding:9px 2px 7px;cursor:pointer;font-family:inherit;color:var(--ink3);font-size:9.5px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:3px;transition:color .15s}
+.bnav button .ic{font-size:19px;line-height:1}
+.bnav button.on{color:var(--navy);font-weight:700}
+
+.entry{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:8px;box-shadow:var(--shadow)}
+.entry-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:5px}
+.entry-ttl{font-weight:600;color:var(--navy);font-size:13.5px}
+.entry-del{background:none;border:none;color:var(--red);font-size:17px;cursor:pointer;padding:0 4px;line-height:1;opacity:.7}
+.entry-meta{font-size:11.5px;color:var(--ink3);margin-bottom:2px;display:flex;flex-wrap:wrap;gap:8px}
+.entry-school{color:var(--navy2);font-weight:600;cursor:pointer;font-size:11.5px}
+.entry-school:hover{text-decoration:underline}
+.entry-body{font-size:12.8px;color:var(--ink2);margin-top:6px;line-height:1.6;white-space:pre-wrap}
+.entry-num{font-size:12px;color:var(--amber);margin-top:5px;font-weight:500}
+.entry-tags{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:10.5px;background:var(--navy-soft);color:var(--navy);padding:2px 8px;border-radius:10px;font-weight:500}
+
+.article{font-size:14px;line-height:1.75;color:var(--ink2)}
+.article h2{font-size:15.5px;color:var(--navy);border-bottom:1.5px solid var(--navy);padding-bottom:5px;margin:20px 0 10px}
+.article h2:first-child{margin-top:0}
+.article h3{font-size:14px;color:var(--red);margin:16px 0 6px}
+.article p{margin:0 0 12px;text-align:justify}
+.article ul{margin:0 0 12px;padding-left:22px}
+.article li{margin:4px 0}
+
+.profile-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:18px;border-radius:var(--r);margin-bottom:12px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.profile-header::before{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;background:rgba(255,255,255,.05);border-radius:50%}
+.profile-header h2{margin:0 0 6px;font-size:16px;line-height:1.35;font-weight:700;position:relative}
+.profile-header .sub{font-size:12px;opacity:.85;margin-bottom:2px;position:relative}
+.profile-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:14px;position:relative}
+.profile-stats .ps{background:rgba(255,255,255,.13);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer}
+.profile-stats .ps:active{background:rgba(255,255,255,.22)}
+.profile-stats .ps .n{font-size:17px;font-weight:700;line-height:1}
+.profile-stats .ps .l{font-size:9.5px;opacity:.8;margin-top:3px}
+
+.quick-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.quick-actions button{background:var(--white);border:1.5px solid var(--line);border-radius:var(--r);padding:14px 4px;font-family:inherit;font-size:12px;font-weight:600;color:var(--navy);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;box-shadow:var(--shadow)}
+.quick-actions button .ic{font-size:22px}
+.quick-actions button.rec{border-color:var(--red);color:var(--red)}
+.quick-actions button.cam{border-color:var(--green);color:var(--green)}
+
+.ptabs{display:flex;gap:4px;margin-bottom:12px;background:var(--white);border-radius:var(--r);padding:5px;border:1px solid var(--line);box-shadow:var(--shadow);overflow-x:auto}
+.ptabs button{background:none;border:none;padding:9px 14px;border-radius:8px;font-family:inherit;font-size:12.5px;color:var(--ink3);cursor:pointer;font-weight:600;white-space:nowrap}
+.ptabs button.on{background:var(--navy);color:#fff}
+
+.audio-item{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:8px;box-shadow:var(--shadow)}
+.audio-item .row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
+.audio-item .title{font-weight:600;color:var(--navy);font-size:13.5px;margin-bottom:2px}
+.audio-item .meta{font-size:11.5px;color:var(--ink3)}
+.audio-item audio{width:100%;margin-top:4px;border-radius:8px;height:38px}
+.audio-item .size{font-size:11px;color:var(--ink3);margin-top:4px}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.photo-grid .ph{position:relative;padding-top:100%;border-radius:10px;overflow:hidden;background:var(--line2);cursor:pointer}
+.photo-grid .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo-grid .ph .del{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:50%;width:24px;height:24px;font-size:13px;cursor:pointer;line-height:1;display:grid;place-items:center}
+
+.modal{position:fixed;inset:0;background:rgba(15,20,30,.55);z-index:900;display:none;align-items:flex-end;justify-content:center}
+.modal.show{display:flex;animation:modalFade .2s ease}
+@keyframes modalFade{from{opacity:0}to{opacity:1}}
+.modal-inner{background:#fff;border-radius:22px 22px 0 0;width:100%;max-width:640px;max-height:92vh;overflow-y:auto;padding:20px;padding-bottom:calc(20px + env(safe-area-inset-bottom));animation:modalUp .28s cubic-bezier(.16,1,.3,1);position:relative}
+@keyframes modalUp{from{transform:translateY(100%)}to{transform:none}}
+.modal-close{position:absolute;top:12px;right:14px;background:#f0f2f6;border:none;width:32px;height:32px;border-radius:50%;font-size:16px;color:var(--ink2);cursor:pointer;display:grid;place-items:center;line-height:1}
+.modal-title{font-size:16px;font-weight:700;color:var(--navy);margin:0 0 4px;padding-right:40px}
+.modal-sub{font-size:12.5px;color:var(--ink3);margin-bottom:14px}
+
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:11px 20px;border-radius:22px;font-size:13px;z-index:9999;opacity:0;transition:all .25s;pointer-events:none;max-width:88vw;text-align:center;font-weight:500}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.load-more{text-align:center;padding:14px;color:var(--navy);font-weight:600;background:var(--white);border:1.5px dashed var(--line);border-radius:var(--r);cursor:pointer;font-family:inherit;font-size:13.5px;width:100%;margin-top:6px}
+
+.foot{text-align:center;font-size:11.5px;color:var(--ink3);padding:16px 0 8px}
+
+/* FLOATING RECORDER FAB */
+#recFab{
+  position:fixed;
+  right:16px;
+  bottom:calc(90px + env(safe-area-inset-bottom));
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,#c02a2a 0%,#8a1d1d 100%);
+  color:#fff;border:none;font-size:26px;cursor:grab;
+  box-shadow:0 6px 20px rgba(192,42,42,.42), 0 2px 6px rgba(0,0,0,.15);
+  display:grid;place-items:center;
+  touch-action:none;user-select:none;z-index:850;
+  transition:transform .12s;
+}
+#recFab:active{cursor:grabbing;transform:scale(.94)}
+#recFab.hidden{display:none}
+
+/* RECORDER PANEL */
+#recPanel{
+  position:fixed;
+  right:16px;
+  bottom:calc(90px + env(safe-area-inset-bottom));
+  background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%);
+  color:#fff;border-radius:20px;padding:16px;
+  box-shadow:0 12px 32px rgba(0,0,0,.42);
+  display:none;min-width:290px;max-width:calc(100vw - 32px);
+  z-index:851;touch-action:none;user-select:none;
+}
+#recPanel.show{display:block;animation:recPanelUp .25s cubic-bezier(.16,1,.3,1)}
+@keyframes recPanelUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+#recPanel .dragbar{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;
+  cursor:grab;padding:2px;
+}
+#recPanel .dragbar:active{cursor:grabbing}
+#recPanel .rec-status{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.4px;opacity:.85}
+#recPanel .rec-dot{width:9px;height:9px;background:#ff4444;border-radius:50%;animation:recPulse 1.1s infinite}
+@keyframes recPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+#recPanel.paused .rec-dot{animation:none;background:#ffaa44}
+
+#recPanel .minbtn{
+  background:rgba(255,255,255,.14);border:none;color:#fff;
+  width:28px;height:28px;border-radius:50%;cursor:pointer;
+  display:grid;place-items:center;font-size:15px;line-height:1;flex-shrink:0;
+}
+#recPanel .minbtn:hover{background:rgba(255,255,255,.22)}
+
+#recPanel .timer{
+  font-size:38px;font-weight:700;font-variant-numeric:tabular-nums;
+  letter-spacing:-1.5px;text-align:center;margin:4px 0 6px;line-height:1;
+}
+#recPanel .school{
+  font-size:12px;text-align:center;opacity:.7;margin-bottom:14px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+#recPanel .controls{display:flex;gap:10px;justify-content:center;align-items:center}
+
+#recPanel .ctrl{
+  background:rgba(255,255,255,.15);border:none;color:#fff;
+  width:50px;height:50px;border-radius:50%;cursor:pointer;
+  display:grid;place-items:center;font-size:20px;
+  transition:background .15s,transform .1s;font-family:inherit;
+}
+#recPanel .ctrl:active{transform:scale(.92)}
+#recPanel .ctrl:hover{background:rgba(255,255,255,.25)}
+#recPanel .ctrl.done{background:var(--green);width:58px;height:58px;box-shadow:0 4px 14px rgba(15,122,74,.4)}
+#recPanel .ctrl.done:hover{background:#0d8f57}
+#recPanel .ctrl.cancel{background:rgba(192,42,42,.65);width:44px;height:44px;font-size:16px}
+
+/* MINIMIZED */
+#recPanel.minimized{padding:10px 14px;min-width:auto;max-width:240px;border-radius:30px}
+#recPanel.minimized .timer{font-size:19px;margin:0;text-align:left;display:inline;letter-spacing:0}
+#recPanel.minimized .school,
+#recPanel.minimized .controls{display:none}
+#recPanel.minimized .dragbar{margin-bottom:0;gap:12px}
+#recPanel.minimized .rec-status{font-size:13px;font-weight:500;opacity:1}
+#recPanel.minimized .minbtn{font-size:14px;width:24px;height:24px}
+
+@media(max-width:360px){
+  body{font-size:14px}
+  .stat .num{font-size:20px}
+  .bnav button{font-size:9px}
+  .bnav button .ic{font-size:17px}
+}
+@media print{
+  .bnav,.topbar,.filters,.ptabs,.quick-actions,#recFab,#recPanel{display:none!important}
+  body{padding:0;background:#fff}
+  .view{display:block!important}
+}
+</style>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">শি</div>
+  <div class="ttl">
+    <h1>শিক্ষক সংকট — রাঙামাটি</h1>
+    <div class="sub" id="appSub">৭০৭টি প্রাথমিক বিদ্যালয় • অফলাইন</div>
+  </div>
+  <button class="install-btn" id="installBtn" onclick="installApp()">⬇ ইনস্টল</button>
+</div>
+
+<div class="content">
+
+<!-- HOME -->
+<div class="view active" id="view-home">
+  <div class="stats">
+    <div class="stat" onclick="jumpToSchools('')"><div class="num" id="stSchools">০</div><div class="lbl">মোট বিদ্যালয়</div></div>
+    <div class="stat red" onclick="jumpToSchools('acting')"><div class="num" id="stVac">০</div><div class="lbl">ভারপ্রাপ্ত পদ</div></div>
+    <div class="stat green" onclick="jumpToSchools('hasdata')"><div class="num" id="stEntries">০</div><div class="lbl">সাক্ষাৎকার</div></div>
+    <div class="stat purple" onclick="show('media')"><div class="num" id="stMedia">০</div><div class="lbl">মিডিয়া</div></div>
+  </div>
+  <div class="card">
+    <h3 class="card-title">📊 উপজেলাভিত্তিক কাভারেজ</h3>
+    <div id="upazilaBars"></div>
+  </div>
+  <div class="card">
+    <h3 class="card-title">🕐 সাম্প্রতিক তথ্য-সংগ্রহ</h3>
+    <div id="recentActivity"></div>
+  </div>
+</div>
+
+<!-- SCHOOLS -->
+<div class="view" id="view-schools">
+  <div class="filters filters-sticky">
+    <div class="filter-row">
+      <select id="f-upazila" class="primary"><option value="">📍 সব উপজেলা</option></select>
+    </div>
+    <div class="filter-row">
+      <input type="search" id="f-search" placeholder="🔍 নাম / শিক্ষক / মোবাইল...">
+    </div>
+    <div class="filter-row">
+      <select id="f-coverage">
+        <option value="">সব কাভারেজ</option>
+        <option value="any">তথ্য আছে</option>
+        <option value="nodem">তথ্য নেই</option>
+        <option value="audio">অডিও আছে</option>
+        <option value="photo">ছবি আছে</option>
+      </select>
+      <select id="f-status">
+        <option value="">সব স্টেটাস</option>
+        <option value="acting">ভারপ্রাপ্ত</option>
+        <option value="closed">বন্ধ</option>
+      </select>
+      <button class="filter-reset" onclick="resetSchoolFilters()">রিসেট</button>
+    </div>
+    <div class="filter-info">
+      <span id="filterSummary">সব বিদ্যালয়</span>
+      <span class="count" id="schoolCount">০</span>
+    </div>
+  </div>
+  <div id="schoolList"></div>
+</div>
+
+<!-- PROFILE -->
+<div class="view" id="view-profile">
+  <button class="btn btn-secondary" style="margin-bottom:10px;padding:8px 14px;font-size:13px" onclick="show('schools')">← সব বিদ্যালয়</button>
+  <div class="profile-header">
+    <h2 id="pName"></h2>
+    <div class="sub" id="pTeacher"></div>
+    <div class="sub" id="pMeta"></div>
+    <div class="profile-stats">
+      <div class="ps" onclick="switchPTab('interviews')"><div class="n" id="pEntries">০</div><div class="l">সাক্ষাৎকার</div></div>
+      <div class="ps" onclick="switchPTab('audio')"><div class="n" id="pAudio">০</div><div class="l">অডিও</div></div>
+      <div class="ps" onclick="switchPTab('photos')"><div class="n" id="pPhotos">০</div><div class="l">ছবি</div></div>
+      <div class="ps" onclick="switchPTab('notes')"><div class="n" id="pNotes">০</div><div class="l">নোট</div></div>
+    </div>
+  </div>
+  <div class="quick-actions">
+    <button class="rec" onclick="startRecordingForCurrent()"><span class="ic">🎤</span>অডিও রেকর্ড</button>
+    <button class="cam" onclick="quickPhoto()"><span class="ic">📷</span>ছবি তুলুন</button>
+    <button onclick="addInterviewForSchool()"><span class="ic">📝</span>সাক্ষাৎকার</button>
+  </div>
+  <div class="ptabs">
+    <button data-tab="interviews" onclick="switchPTab('interviews')">📝 সাক্ষাৎকার</button>
+    <button data-tab="audio" onclick="switchPTab('audio')">🎤 অডিও</button>
+    <button data-tab="photos" onclick="switchPTab('photos')">📷 ছবি</button>
+    <button data-tab="notes" onclick="switchPTab('notes')">📒 নোট</button>
+  </div>
+  <div id="ptabContent"></div>
+</div>
+
+<!-- COLLECT -->
+<div class="view" id="view-collect">
+  <div class="card">
+    <h3 class="card-title">📝 নতুন সাক্ষাৎকার</h3>
+    <div class="field"><label>বিদ্যালয় *</label><select id="c-school"><option value="">— নির্বাচন —</option></select></div>
+    <div class="field"><label>ধরন *</label>
+      <select id="c-type">
+        <option value="">— নির্বাচন —</option>
+        <option>প্রধান শিক্ষক</option><option>সহকারী শিক্ষক</option><option>নতুন শিক্ষক</option>
+        <option>শিক্ষার্থী</option><option>অভিভাবক</option><option>স্থানীয় নেতা</option>
+        <option>SMC সদস্য</option><option>নোট</option><option>অন্যান্য</option>
+      </select>
+    </div>
+    <div class="field"><label>তারিখ</label><input type="date" id="c-date"></div>
+    <div class="field"><label>তথ্যদাতার নাম *</label><input type="text" id="c-person"></div>
+    <div class="field"><label>পদবি / সম্পর্ক</label><input type="text" id="c-post"></div>
+    <div class="field"><label>মোবাইল</label><input type="tel" id="c-mobile"></div>
+    <div class="field"><label>বিবরণ *</label><textarea id="c-body" rows="6"></textarea></div>
+    <div class="field"><label>সংখ্যাগত তথ্য (ঐচ্ছিক)</label><input type="text" id="c-numbers"></div>
+    <div class="field"><label>ট্যাগ (কমা দিয়ে)</label><input type="text" id="c-tags"></div>
+    <button class="btn btn-primary btn-block" onclick="saveInterview()">✓ সংরক্ষণ</button>
+  </div>
+  <div class="card">
+    <h3 class="card-title">📚 সংগৃহীত সাক্ষাৎকার</h3>
+    <div class="filter-row" style="margin-bottom:8px">
+      <input type="search" id="e-search" placeholder="🔍 খুঁজুন..." oninput="renderAllEntries()">
+      <select id="e-type" onchange="renderAllEntries()"><option value="">সব ধরন</option></select>
+    </div>
+    <div id="allEntriesList"></div>
+  </div>
+</div>
+
+<!-- MEDIA -->
+<div class="view" id="view-media">
+  <div class="filters filters-sticky">
+    <div class="filter-row">
+      <select id="m-upazila"><option value="">📍 সব উপজেলা</option></select>
+      <select id="m-type">
+        <option value="">সব মিডিয়া</option>
+        <option value="audio">🎤 অডিও</option>
+        <option value="photo">📷 ছবি</option>
+      </select>
+    </div>
+    <div class="filter-row">
+      <input type="search" id="m-search" placeholder="🔍 শিরোনাম / স্কুল..." oninput="renderMediaHub()">
+      <button class="filter-reset" onclick="resetMediaFilters()">রিসেট</button>
+    </div>
+    <div class="filter-info"><span>মোট মিডিয়া</span><span class="count" id="mediaCount">০</span></div>
+  </div>
+  <div id="mediaList"></div>
+</div>
+
+<!-- REPORT -->
+<div class="view" id="view-report">
+  <div class="filters filters-sticky">
+    <div class="filter-row">
+      <select id="r-upazila" class="primary" onchange="renderReport()"><option value="">📍 সব উপজেলা</option></select>
+    </div>
+    <div class="filter-row">
+      <select id="r-type" onchange="renderReport()"><option value="">সব ধরন</option></select>
+      <select id="r-date" onchange="renderReport()">
+        <option value="">সব সময়</option>
+        <option value="today">আজ</option>
+        <option value="week">৭ দিন</option>
+        <option value="month">৩০ দিন</option>
+      </select>
+      <button class="filter-reset" onclick="resetReportFilters()">রিসেট</button>
+    </div>
+    <div id="reportBadges"></div>
+  </div>
+  <div class="card">
+    <h3 class="card-title">📈 ফিল্টারড সারসংক্ষেপ</h3>
+    <div id="autoSummary"></div>
+  </div>
+  <div class="card">
+    <h3 class="card-title">📄 মূল প্রতিবেদন</h3>
+    <div class="article" id="mainReport"></div>
+  </div>
+</div>
+
+<!-- MORE -->
+<div class="view" id="view-more">
+  <div class="card">
+    <h3 class="card-title">📲 অ্যাপ ইনস্টল</h3>
+    <p style="font-size:13px;color:var(--ink2);margin:0 0 12px;line-height:1.6">ফোনের হোম স্ক্রিনে যোগ করে অ্যাপের মতো ব্যবহার করুন — সম্পূর্ণ অফলাইন।</p>
+    <button class="btn btn-primary btn-block" onclick="installApp()">⬇️ হোম স্ক্রিনে যোগ করুন</button>
+  </div>
+  <div class="card">
+    <h3 class="card-title">📤 ব্যাকআপ ও সিঙ্ক</h3>
+    <p style="font-size:12.5px;color:var(--ink2);margin:0 0 10px">সম্পূর্ণ ব্যাকআপ এক ফাইলে — অন্য ফোনে ইমপোর্ট করলেই সব চলে আসবে।</p>
+    <div class="field"><label>পাসওয়ার্ড (ঐচ্ছিক)</label><input type="password" id="backupPass"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="exportBackup()">⬇️ ব্যাকআপ</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('importBackupFile').click()">⬆️ ইমপোর্ট</button>
+    </div>
+    <input type="file" id="importBackupFile" accept=".json,.rkb" style="display:none" onchange="importBackup(event)">
+  </div>
+  <div class="card">
+    <h3 class="card-title">📊 এক্সপোর্ট</h3>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="exportEntriesCSV()">সাক্ষাৎকার CSV</button>
+      <button class="btn btn-secondary" onclick="exportSchoolsCSV()">স্কুল CSV</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="card-title">💾 স্টোরেজ</h3>
+    <div id="storageInfo"></div>
+  </div>
+  <div class="card">
+    <h3 class="card-title">🗑️ রিসেট</h3>
+    <button class="btn btn-danger btn-block" onclick="wipeAll()">সব তথ্য মুছে ফেলুন</button>
+  </div>
+</div>
+
+</div>
+
+<!-- RECORDER FAB -->
+<button id="recFab" onclick="handleFabClick()">🎤</button>
+
+<!-- RECORDER PANEL -->
+<div id="recPanel">
+  <div class="dragbar" id="recDragBar">
+    <div class="rec-status"><span class="rec-dot"></span><span id="recStatusText">রেকর্ডিং</span></div>
+    <button class="minbtn" id="recMinBtn" onclick="event.stopPropagation();toggleMinimize()">−</button>
+  </div>
+  <div class="timer" id="recTimer">00:00</div>
+  <div class="school" id="recSchool"></div>
+  <div class="controls" id="recControls">
+    <button class="ctrl" id="recPauseBtn" onclick="togglePause()" title="পজ/রিজিউম">⏸</button>
+    <button class="ctrl done" onclick="doneRecording()" title="সংরক্ষণ">✓</button>
+    <button class="ctrl cancel" onclick="cancelRecording()" title="বাতিল">✕</button>
+  </div>
+</div>
+
+<nav class="bnav">
+  <button class="on" data-view="home" onclick="show('home')"><span class="ic">🏠</span>হোম</button>
+  <button data-view="schools" onclick="show('schools')"><span class="ic">🏫</span>স্কুল</button>
+  <button data-view="collect" onclick="show('collect')"><span class="ic">📝</span>সাক্ষাৎকার</button>
+  <button data-view="media" onclick="show('media')"><span class="ic">🎬</span>মিডিয়া</button>
+  <button data-view="report" onclick="show('report')"><span class="ic">📄</span>রিপোর্ট</button>
+  <button data-view="more" onclick="show('more')"><span class="ic">⚙️</span>আরও</button>
+</nav>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ==================== SCHOOL DATA ==================== */
+const RAW = `সদর|কৃষ্ণ মোহন চাকমা|ত্রিপুরাছড়া স: প্রা: বিদ্যা:|01866980168
+সদর|জয়সী চাকমা (ভারপ্রাপ্ত)|পুটিখালী স: প্রা: বিদ্যা:|01552715302
+সদর|সুবর্ণ চাকমা (ভারপ্রাপ্ত)|উত্তর কুতুকছড়ি স: প্রা: বিদ্যা:|01866980214
+সদর|বিনিময় চাকমা (ভারপ্রাপ্ত)|দ: কুতুকছড়ি স: প্রা: বিদ্যা:|01866980224
+সদর|বিনয় কুমার চাকমা|খারিক্ষ্যং স: প্রা: বিদ্যা:|01866980115
+সদর|মো: আবুল কাসেম (ভারপ্রাপ্ত)|বড় তৈমিদং স: প্রা: বিদ্যা:|01866980435
+সদর|সন্তোষ জীবন চাকমা|নোয়াদম স: প্রা: বিদ্যা:|01866980117
+সদর|মনি রতন চাকমা|মাচ্যাপাড়া স: প্রা: বিদ্যা:|01866980118
+সদর|সুমনা চাকমা|করল্যাছড়ি স: প্রা: বিদ্যা:|01556611322
+সদর|শর্মিষ্টা চাকমা|চোংড়াছড়ি স: প্রা: বিদ্যা:|01746687832
+সদর|কনিকা চাকমা|বটতলী পাড়া স: প্রা: বিদ্যা:|01866980112
+সদর|মো: মহিদুল হক (ভারপ্রাপ্ত)|কুড়ামারা স: প্রা: বিদ্যা:|01621858195
+সদর|দেব বিকাশ চাকমা|ভাগ্যধন কার্বারী পাড়া স: প্রা: বিদ্যা:|01553602382
+সদর|মো: হাসান উদ্দিন|পুরানপাড়া স: প্রা: বিদ্যা:|01556543802
+সদর|রোকেয়া বেগম (ভারপ্রাপ্ত)|নিউ রাঙ্গামাটি স: প্রা: বিদ্যা:|01843705940
+সদর|চিকোচি মগ|পুলিশ লাইন স: প্রা: বিদ্যা:|01556609157
+সদর|আমিনা তাহিতি কামাল|দ: বালিকা স: প্রা: বিদ্যা:|01866980213
+সদর|নজির আহমেদ তালুকদার|স্বর্ণটিলা স: প্রা: বিদ্যা:|01820276880
+সদর|শংকর দে|আসামবস্তী স: প্রা: বিদ্যা:|01818169128
+সদর|নির্মল চাকমা|ঝগড়াবিল স: প্রা: বিদ্যা:|01866980150
+সদর|লাকী চাকমা|যোগেন্দ দেওয়ান পাড়া স: প্রা: বিদ্যা:|01866980131
+সদর|মুহাম্মদ কলিম উল্লাহ|কাঠালতলী স: প্রা: বিদ্যা:|01866980151
+সদর|রাজিয়া সুলতানা|রানীদয়াময়ী স: প্রা: বিদ্যা:|01828867455
+সদর|স্বর্ণ কুমার চাকমা|ভেদভেদী স: প্রা: বিদ্যা:|01556596477
+সদর|মানিতা চাকমা|কাটাছড়ি স: প্রা: বিদ্যা:|01552482799
+সদর|মো: নেজাম উদ্দিন|শাহ্‌ স: প্রা: বিদ্যা:|01820303155
+সদর|সীমা চাকমা (ভারপ্রাপ্ত)|বনরুপা মডেল স: প্রা: বিদ্যা:|01556234787
+সদর|অনিরুদ্ধ দেবনাথ|বসন্ত স: প্রা: বিদ্যা:|01911478232
+সদর|টিটন চাকমা|বসন্ত মঈন স: প্রা: বিদ্যা:|01816359266
+সদর|সবিনয় দেওয়ান|হেমন্ত স: প্রা: বিদ্যা:|01866980140
+সদর|দিপালী বড়–য়া (ভারপ্রাপ্ত)|হাজারীবাক স: প্রা: বিদ্যা:|01820329079
+সদর|সাধন চন্দ্র চাকমা|শিক্ষাধন স: প্রা: বিদ্যা:|01820308368
+সদর|রনজিত বড়ুয়া|বাদলছড়িমুখ স: প্রা: বিদ্যা:|01556700208
+সদর|শান্তি কুমার ত্রিপুরা|কিল্লাপাহাড় স: প্রা: বিদ্যা:|01866980144
+সদর|মো. ইসমাইল|বালুখালী বটতলী স: প্রা: বিদ্যা:|01815082178
+সদর|ধন দেওয়ান (ভারপ্রাপ্ত)|ভিজাকিজিং স: প্রা: বিদ্যা:|01552666561
+সদর|রাজিয়া সুলতানা (ভারপ্রাপ্ত)|শুকরছড়ি স: প্রা: বিদ্যা:|01828879696
+সদর|সুশীল মিত্র চাকমা|সাপছড়ি স: প্রা: বিদ্যা:|01829596248
+সদর|ইমিলি দেওয়ান (ভারপ্রাপ্ত)|লালমোহন কার্বারী পাড়া স: প্রা: বিদ্যা:|01866980371
+সদর|পঙ্কজ আসাম (ভারপ্রাপ্ত)|ডলুছড়ি স: প্রা: বিদ্যা:|01866980376
+সদর|লিপি চাকমা|বড়াদম স: প্রা: বিদ্যা:|01552717409
+সদর|সুপ্রীতি চাকমা|গোলাছড়ি স: প্রা: বিদ্যা:|01820329512
+সদর|স্বর্ণা দেওয়ান (ভারপ্রাপ্ত)|ঈশ^র চন্দ্র দেওয়ানপাড়া স: প্রা: বিদ্যা:|01828856051
+সদর|মানষী দেওয়ান|ধনপাতামূখ স: প্রা: বিদ্যা:|01820204033
+সদর|মো: শহিদুল হাছান|যগোনাছড়ি স: প্রা: বিদ্যা:|01553374001
+সদর|সাধ্বী দেবী চাকমা (ভারপ্রাপ্ত)|বামের তৈমিদং স: প্রা: বিদ্যা:|01848321337
+সদর|বেবিলা দেওয়ান|জীবতলী স: প্রা: বিদ্যা:|01866980157
+সদর|হাছিনা বেগম|গোধূলী আমানতবাগ স: প্রা: বিদ্যা:|01866980158
+সদর|সোমা চাকমা|রাজা নলিনাক্ষ রায় স: প্রা: বিদ্যা:|01866980141
+সদর|আলোময় চাকমা|কবি অরুন রায় স: প্রা: বিদ্যা:|01731058225
+সদর|প্রদীপ কুমার দাশ|হাজাছড়া স: প্রা: বিদ্যা:|01866980161
+সদর|অসীম চাকমা (ভারপ্রাপ্ত)|পানছড়ি দয়াময় স: প্রা: বিদ্যা:|01866980431
+সদর|দীপুশ্রীং লেপচা (ভারপ্রাপ্ত)|বিলাইছড়ি পাড়া স: প্রা: বিদ্যা:|01855863958
+সদর|লিটন চাকমা (ভারপ্রাপ্ত)|কেরেটকাটা অমরস্মৃতি স: প্রা: বিদ্যা:|01866980283
+সদর|জ্ঞান রঞ্জন চাকমা (ভারপ্রাপ্ত)|চন্দ্রহরি স: প্রা: বিদ্যা:|01866980165
+সদর|মনিতোষ চাকমা|মহিষ ভাংগা স: প্রা: বিদ্যা:|01866980166
+সদর|সুবিনয় চাকমা|ধামাইছড়া স: প্রা: বিদ্যা:|01815857502
+সদর|জ্ঞান বিকাশ চাকমা (ভারপ্রাপ্ত)|দ্বিমুখ্যাছড়া স: প্রা: বিদ্যা:|01553790475
+সদর|প্রভু রঞ্জন চাকমা|দিগলীবাক স: প্রা: বিদ্যা:|01866980169
+সদর|শুক্র কুমার চাকমা (ভারপ্রাপ্ত)|চেগেইয়াছড়ি স: প্রা: বিদ্যা:|01866980170
+সদর|অনন্ত রঞ্জন চাকমা|পেরাছড়া স: প্রা: বিদ্যা:|01557160146
+সদর|সুখীতা চাকমা|রাজদ্বীপ স: প্রা: বিদ্যা:|01777695990
+সদর|সমর বিজয় চাকমা (ভারপ্রাপ্ত)|গরগয্যাছড়ি স: প্রা: বিদ্যা:|01556701016
+সদর|মিগার চাকমা|কাবুক্যা পাড়া স: প্রা: বিদ্যা:|01556540964
+সদর|মো: আব্দুল মোতালেব|সাপমারা পাহাড় স: প্রা: বিদ্যা:|01866980175
+সদর|সন্ধ্যা রানী চাকমা|বেচারাম কা:পাড়া স: প্রা: বিদ্যা:|01553644031
+সদর|দ্বীপন চাকমা|নাড়াইছড়ি স: প্রা: বিদ্যা:|01866980177
+সদর|কৃপাসিন্ধু চাকমা (ভারপ্রাপ্ত)|সুষেন কার্বারী পা: স: প্রা: বিদ্যা:|01866980470
+সদর|শিশির চাকমা (ভারপ্রাপ্ত)|কিচিং আদাম স: প্রা: বিদ্যা:|1820329067
+সদর|অনিল বরন চাকমা|বসন্ত পাংখো পাড়া স: প্রা: বিদ্যা:|01553249925
+সদর|জ্ঞান বিকাশ চাকমা|মৌনতলা সূর্যকুমার স: প্রা: বিদ্যা:|01866980181
+সদর|চন্দ্র শেখর চাকমা|পলাদ আদাম স: প্রা: বিদ্যা:|01866980182
+সদর|রনতোষ দেওয়ান|দীঘলছড়ি স: প্রা: বিদ্যা:|01553765753
+সদর|রুমেন চাকমা (ভারপ্রাপ্ত)|গুইছড়ি স: প্রা: বিদ্যা:|01866980184
+সদর|সুরেশ কুমার চাকমা (ভারপ্রাপ্ত)|হাজাছড়ি মার্মা পাড়া স: প্রা: বিদ্যা:|01866980186
+সদর|প্রীতি কুসুম চাকমা|বলপিয়ে আদাম স: প্রা: বিদ্যা:|01925800492
+সদর|কল্পনা চাকমা (ভারপ্রাপ্ত)|সাপছড়ি যৌথখামার স: প্রা: বিদ্যা:|01866980191
+সদর|তরুন জ্যোতি চাকমা|মুবাছড়ি স: প্রা: বিদ্যা:|01556700312
+সদর|তাহমিনা আমিন|জালিয়া পাড়া স: প্রা: বিদ্যা:|01788786589
+সদর|অজয় সেন চাকমা (ভারপ্রাপ্ত)|ডিয়ার পার্ক স: প্রা: বিদ্যা:|01866980189
+সদর|মিহির ত্রিপুরা|মানিকছড়ি প্রিয়মোহন দে: পা:|0155294115
+সদর|আল্পনা চাকমা (ভারপ্রাপ্ত)|দেপ্প্যোয়াছড়ি স: প্রা: বিদ্যা:|01531881883
+সদর|সালমা আক্তার (ভারপ্রাপ্ত)|বীরশ্রেষ্ঠ মুন্সী আব্দুর রউফ স: প্রা: বিদ্যা:|01866980192
+সদর|বিপিন চাকমা (ভারপ্রাপ্ত)|পুলিন বিহারী স: প্রা: বিদ্যা:|01866980193
+সদর|সুচন্দা চাকমা (ভারপ্রাপ্ত)|মৈত্রী নগর স: প্রা: বিদ্যা:|01866980194
+সদর|রীনা বড়ুয়া (ভারপ্রাপ্ত)|বাকছড়ি স: প্রা: বিদ্যা:|01632841982
+সদর|জগৎ লাল চাকমা (ভারপ্রাপ্ত)|জীবতলী হেডম্যান পাড়া স: প্রা: বিদ্যা:|01820317320
+সদর|বিদর্শী চাকমা (ভারপ্রাপ্ত)|সারাধন ঢেবাছড়া স: প্রা: বিদ্যা:|01866980198
+সদর|রুপনা চাকমা (ভারপ্রাপ্ত)|মরংছড়ি স: প্রা: বিদ্যা:|01866980199
+সদর|মুহাম্মদ মুছা|পরীক্ষণ বিদ্যালয়|01716666045
+সদর|অনিল চাকমা|রাঙ্গামাটি শিশু কল্যাণ|01556775407
+কাউখালী|বিমল বিকাশ চাকমা|বাদলছড়ি সরঃ প্রাঃ বিঃ|01818062329
+কাউখালী|ধন কুমার তনচংগ্যা|বগাপাড়া সরঃ প্রাঃ বিঃ|01828855889
+কাউখালী|ধারশ মনি চাকমা|বাকছড়ি সরঃ প্রাঃ বিঃ|01552606482
+কাউখালী|সুন্দর রানী তালুকদার|বড়বিলি সর: প্রা: বি:|01820321703
+কাউখালী|উবাসাই মারমা|বড়ডলুপাড়া সরঃ প্রাঃ বিঃ|01820325725
+কাউখালী|অংথোয়াইপ্রু মারমা|বড়আমছড়ি সরঃ প্রাঃ বিঃ|01845763599
+কাউখালী|যতœ কুমার চাকমা|বর্মাছড়ি বাজার সরঃ প্রাঃ বিঃ|01740998391
+কাউখালী|শ্যামল মিত্র চাকমা|বেতছড়ি সরঃ প্রাঃ বিঃ|01822890245
+কাউখালী|তফছির আহমদ হক্কানী|বেতবুনিয়া সরঃ প্রাঃ বিঃ|01553685811
+কাউখালী|পাইসুই মারমা জয়|বটতলী সরঃ প্রাঃ বিঃ|01553054976
+কাউখালী|খাদিজা আক্তার|বেতবুনিয়া টিএন্ডটি সরঃ প্রাঃ বিঃ|01831894114
+কাউখালী|নলিনি মোহন চাকমা|চেলাছড়া সরঃ প্রাঃ বিঃ|01552718447
+কাউখালী|সাচিংউ মারমা|চৌধুরীপাড়া সরঃ প্রাঃ বিঃ|01820400589
+কাউখালী|মংচাইনু মারমা|ডাবুয়া কেপি চৌধুরীপাড়া সরঃ প্রাঃ বিঃ|01820366565
+কাউখালী|কল্যানী মহাজন|ডায়লংপাড়া সরঃ প্রাঃ বিঃ|01868138586
+কাউখালী|প্রকাশ কুসুম বড়–য়া|ডলুছড়া সরঃ প্রাঃ বিঃ|01773436582
+কাউখালী|মো: রফিকুল আলম চৌধুরী|ডাবুয়া হেডম্যানপাড়া সরঃ প্রাঃ বিঃ|01727433613
+কাউখালী|অংজাইপ্রু মারমা|ধুপছড়িপাড়া সরঃ প্রাঃ বিঃ|01831549568
+কাউখালী|সুমন মারমা|ডলুপাড়া সরঃ প্রাঃ বিঃ|01687485562
+কাউখালী|আলো চাকমা|দুর্য্যাপাড়া সরঃ প্রাঃ বিঃ|1553054944
+কাউখালী|স্বপ্না দে|পুর্বশিয়ালবুক্কা সরঃ প্রাঃ বিঃ|01554718828
+কাউখালী|বিকো চাকমা|ঘাগড়া সরঃ প্রাঃ বিঃ|01556700666
+কাউখালী|আশুতোষ চাকমা|ঘিলাছড়ি সরঃ প্রাঃ বিঃ|01871098828
+কাউখালী|রুইচাঅং মারমা|হারাঙ্গীমুখ সরঃ প্রাঃ বিঃ|01820309323
+কাউখালী|মোঃ মোস্তফা|হারাঙ্গী রিফিউজিপাড়া সরঃ প্রাঃ বিঃ|01820305790
+কাউখালী|বন্দনা মল্লিক দে|হাতীমারা সরঃ প্রাঃ বিঃ|01829486588
+কাউখালী|উপ বিকাশ তালুকদার|জুনুমাছড়া সরঃ প্রাঃ বিঃ|01557008649
+কাউখালী|বিশ^ মনি চাকমা|কজইছড়ি সরঃ প্রাঃ বিঃ|01820301580
+কাউখালী|জেসমিন চাকমা|কলাবাগান যৌথখামার সরঃ প্রাঃ বিঃ|01556595223
+কাউখালী|মনিদর্শী চাকমা|কলাবুনিয়া সরঃ প্রাঃ বিঃ|1533196837
+কাউখালী|আতুসী মারমা|কলমপতি সরঃ প্রাঃ বিঃ|01828865275
+কাউখালী|রনজিত বিকাশ চাকমা|কাশখালী সরঃ প্রাঃ বিঃ|01815529429
+কাউখালী|কামরুন নাহার বেগম|কাউখালী সরঃ প্রাঃ বিঃ|01845772368
+কাউখালী|উশিথোয়াই মারমা|কোলাপাড়া সরঃ প্রাঃ বিঃ|01829079017
+কাউখালী|মোহাম্মদ আবু জাফর|লাঠিছড়া সরঃ প্রাঃ বিঃ|01711874665
+কাউখালী|মোঃ ফোরকান|লুঙ্গীপাড়া সরঃ প্রাঃ বিঃ|01829486392
+কাউখালী|জাহাঙ্গীর আলম|মাঝিপাড়া সরঃ প্রাঃ বিঃ|01828924870
+কাউখালী|মঙ্গল কুমার চাকমা|মিতিংগাছড়ি সরঃ প্রাঃ বিঃ|01875058214
+কাউখালী|জ্ঞান রতন চাকমা|মঘাছড়ি সরঃ প্রাঃ বিঃ|01815625743
+কাউখালী|উক্যজান মারমা|মনাইপাড়া সরঃ প্রাঃ বিঃ|01553120766
+কাউখালী|ধন বিকাশ চাকমা|মৌইনপাড়া সরঃ প্রাঃ বিঃ|01840303556
+কাউখালী|নিবারন চাকমা|নাভাঙ্গা সরঃ প্রাঃ বিঃ|01552433058
+কাউখালী|দ্বিপন কুমার বৈষ্ণব|নাইল্যাছড়ি সরঃ প্রাঃ বিঃ|01823721308
+কাউখালী|মংসা প্রু মারমা|নি¤œকচুখালী সরঃ প্রাঃ বিঃ|01716889954
+কাউখালী|মোঃ আলাউদ্দিন|নতুনপাড়া সরঃ প্রাঃ বিঃ|01585366611
+কাউখালী|থুইমন রোয়াজা|পানছড়ি সরঃ প্রাঃ বিঃ|01557222407
+কাউখালী|বেবী চৌধুরী|পশ্চিম মনাইপাড়া সরঃ প্রাঃ বিঃ|01553109626
+কাউখালী|নিউহ্লামং মারমা|পচুপাড়া সরঃ প্রাঃ বিঃ|01858839698
+কাউখালী|শশী কুমার চাকমা|পোড়াপাড়া সরঃ প্রাঃ বিঃ|01554360959
+কাউখালী|শিল্পী দাশ|পশ্চিম মাঝেরপাড়া সরঃ প্রাঃ বিঃ|01823755721
+কাউখালী|উসিচিং মারমা|পোয়াপাড়া মডেল সরঃ প্রাঃ বিঃ|01552700455
+কাউখালী|পুলক চাকমা|পুরান পোয়াপাড়া সরঃ প্রাঃ বিঃ|01557396778
+কাউখালী|রাজ্য মনি চাকমা|পুর্বঘিলাছড়ি সরঃ প্রাঃ বিঃ|01820357582
+কাউখালী|চিংসাথোয়াই মারমা|রাজখালী সরঃ প্রাঃ বিঃ|01576478384
+কাউখালী|মনিকা চাকমা|রাঙ্গীপাড়া সরঃ প্রাঃ বিঃ|01553110418
+কাউখালী|দিলোয়ারা বেগম|আরটিএম সরঃ প্রাঃ বিঃ|01555047411
+কাউখালী|অংসিনু মারমা|সাপমারা সরঃ প্রাঃ বিঃ|01856414991
+কাউখালী|ক্যাজাইপ্রু মারমা|শুকনাছড়ি সরঃ প্রাঃ বিঃ|01553107505
+কাউখালী|দ্বিপন কুমার বৈষ্ণব|সোনাইছড়ি সরঃ প্রাঃ বিঃ|01823721308
+কাউখালী|মাছাথুই মারমা|তারাবনিয়া সরঃ প্রাঃ বিঃ|01820301078
+কাউখালী|লিকু তালুকদার|ত্রিপুরাছড়ি সরঃ প্রাঃ বিঃ|01862012032
+কাউখালী|সুশান্ত চাকমা|টুঙ্গীপাড়া সরঃ প্রাঃ বিঃ|01825594253
+কাউখালী|নিরীনা চাকমা|উল্টাপাড়া সরঃ প্রাঃ বিঃ|01864549045
+নানিয়ারচর|বাবুল কান্তি চাকমা|বাজেছড়া সরঃ প্রাঃ বিঃ|01814270857
+নানিয়ারচর|সুরন্ত চাকমা|উচ্চ কেঙ্গালছড়ি সরঃ প্রাঃ বিঃ|01556701734
+নানিয়ারচর|তাপস চন্দ্র দাশ|নি¤œ কেঙ্গালছড়ি সরঃ প্রাঃ বিঃ|01820301632
+নানিয়ারচর|মহেন্দ্র লাল চাকমা|মধ্য আদম সরঃ প্রাঃ বিঃ|01821525076
+নানিয়ারচর|সুনীল বিহারী দেওয়ান|জাহানাতলী সরঃ প্রাঃ বিঃ|01864757187
+নানিয়ারচর|পঞ্চশীল খীসা (চ.দা.)|বাকছড়ি সরঃ প্রাঃ বিঃ|01557327105
+নানিয়ারচর|সুভলেন্দু চাকমা|দেওয়ান পাড়া সরঃ প্রাঃ বিঃ|01825322971
+নানিয়ারচর|ইন্দ্র জ্যোতি চাকমা|বাকছড়ি মূখ সরঃ প্রাঃ বিঃ|01865235612
+নানিয়ারচর|সমর বিজয় চাকমা (চ.দা.)|আকবরীগ্রাম সরঃ প্রাঃ বিঃ|01553750124
+নানিয়ারচর|মনিষা খীসা|বেতছড়ি তালুকদার পাড়া|01825837906
+নানিয়ারচর|ধীরেন্দ্র লাল চাকমা|বেতছড়ি চন্দ্রসেন মহাজন পাড়া সরঃ প্রাঃ বিঃ|01818418764
+নানিয়ারচর|অসিত দাশ (চ.দা.)|তৈচাকমা হেডম্যান পাড়া সরঃ প্রাঃ বিঃ|01815664308
+নানিয়ারচর|প্রণব জ্যোতি চাকমা|যাদুখাছড়া সরঃ প্রাঃ বিঃ|01553112783
+নানিয়ারচর|মুকুল বিকাশ খীসা|নানিয়ারচর মডেল সরঃ প্রাঃ বিঃ|01827573130
+নানিয়ারচর|রাজ বিহারী চাকমা|খুল্যাং পাড়া সরঃ প্রাঃ বিঃ|01556741804
+নানিয়ারচর|অরুন বিকাশ চাকমা, সশি(ভা:)|মরাচেঙ্গী মুখ সরঃ প্রাঃ বিঃ|01837846438
+নানিয়ারচর|জোনাকী চাকমা (চ.দা.)|তৈচাকমা জরিপ্যা বাপের পাড়া সরঃ প্রাঃ বিঃ|01820326579
+নানিয়ারচর|রিপা চাকমা|সাপমারা সরঃ প্রাঃ বিঃ|01556704389
+নানিয়ারচর|প্রাজীব বড়–য়া|সোনারাম কার্বারী পাড়া সরঃ প্রাঃ বিঃ|01837847757
+নানিয়ারচর|শান্তশীল চাকমা|যাত্রামনি কার্বারী পাড়া সরঃ প্রাঃ বিঃ|01811673722
+নানিয়ারচর|রুপায়ন চাকমা|পাতাছড়ি সরঃ প্রাঃ বিঃ|01838567084
+নানিয়ারচর|র্অপন দওেয়ান|তৈচাকমা মুখ সরঃ প্রাঃ বিঃ|01822864545
+নানিয়ারচর|নীল মোহণ চাকমা, সশি (ভা:)|শৈলেশ্বরী সরঃ প্রাঃ বিঃ|0182908888
+নানিয়ারচর|প্রান্তিকা চাকমা (চ.দা.)|বগাছড়ি সরঃ প্রাঃ বিঃ|01828855276
+নানিয়ারচর|নয়ন কান্তি নাথ|বটবিল সরঃ প্রাঃ বিঃ|01818163656
+নানিয়ারচর|অরুন বিকাশ চাকমা|রামহরি পাড়া সরঃ প্রাঃ বিঃ|01818169215
+নানিয়ারচর|মিন্টু কুমার দে|নানাক্রুম সরঃ প্রাঃ বিঃ|01818173534
+নানিয়ারচর|পয়শ্রী খীসা|তরনী কার্বারী পাড়া সরঃ প্রাঃ বিঃ|01820365066
+নানিয়ারচর|সূচনা চাকমা|কৃষ্ণমাছড়া সরঃ প্রাঃ বিঃ|01826654701
+নানিয়ারচর|তুংকু চাকমা|ঘিলাছড়ি সরঃ প্রাঃ বিঃ|01820368867
+নানিয়ারচর|সম্পদ কর|পুলি পাড়া সরঃ প্রাঃ বিঃ|01820314349
+নানিয়ারচর|পূর্ণরায় ত্রিপুরা|চৌধুরীছড়া সরঃ প্রাঃ বিঃ|01818173494
+নানিয়ারচর|মোর্ষণ চাকমা|মাইচছড়ি সরঃ প্রাঃ বিঃ|01556613308
+নানিয়ারচর|চয়না চাকমা|হাতীমারা সরঃ প্রাঃ বিঃ|01556701551
+নানিয়ারচর|শংকর প্রসাদ চাকমা|হাজাছড়ি সরঃ প্রাঃ বিঃ|01732920177
+নানিয়ারচর|কুন্ডেশ্বরী আইচ|পুকুরছড়ি সরঃ প্রাঃ বিঃ|01828860245
+নানিয়ারচর|বিপুলা দে|কাবুকছড়ি সরঃ প্রাঃ বিঃ|01818173452
+নানিয়ারচর|রমেল চাকমা (চ.দা.)|বাউরা পাড়া সরঃ প্রাঃ বিঃ|01813328924
+নানিয়ারচর|করবী খীসা (চ.দা.)|মংখোলা সরঃ প্রাঃ বিঃ|01865303912
+নানিয়ারচর|প্রদীপ কুমার দাশ|বুড়িঘাট বাজার সরঃ প্রাঃ বিঃ|01823346283
+নানিয়ারচর|রুপায়ন চাকমা (চ.দা.)|কাট্টলতলী পাড়া সরঃ প্রাঃ বিঃ|01852591624
+নানিয়ারচর|নিয়ামুল হক (চ.দা.)|দক্ষিণ হাতীমারা সরঃ প্রাঃ বিঃ|01820693110
+নানিয়ারচর|নিরোদ বরণ চাকমা|ধার্য্যাছড়ি সরঃ প্রাঃ বিঃ|01820352530
+নানিয়ারচর|কল্লোল মজুমদার|বুড়িঘাট পুনর্বাসন সরঃ প্রাঃ বিঃ|01820183360
+নানিয়ারচর|মোঃ ফজলুল বারী|নানিয়ারচর পুনর্বাসন সরঃ প্রাঃ বিঃ|01552700473
+নানিয়ারচর|মোঃ শহীদুল ইসলাম (চ.দা.)|বগাছড়ি পুনর্বাসন সরঃ প্রাঃ বিঃ|01788375932
+নানিয়ারচর|ত্রিজীবন চাকমা (চ.দা.)|এগারাল্যাছড়া সরঃ প্রাঃ বিঃ|01860097504
+নানিয়ারচর|নৃপেন চাকমা|গর্জনতলী সরঃ প্রাঃ বিঃ|01556703039
+নানিয়ারচর|মোঃ সাজেদুল আলম (চ.দা.)|গোলসাছড়ি সরঃ প্রাঃ বিঃ|01813862908
+নানিয়ারচর|রবীন্দ্র বিজয় চাকমা|বড়পুল পাড়া সরঃ প্রাঃ বিঃ|01860632401
+নানিয়ারচর|শিখা চাকমা (চ.দা.)|পশ্চিম হাতীমারা সরঃ প্রাঃ বিঃ|01820356322
+নানিয়ারচর|ছায়া রানী চাকমা|বেতছড়ি মুখ সরঃ প্রাঃ বিঃ|01557808496
+নানিয়ারচর|শময়িতা চাকমা (চ.দা.)|করল্যাছড়ি ললিত কুমার মেম্বার পাড়া সরঃ প্রাঃ বিঃ|01556701556
+নানিয়ারচর|সুবোধ জ্যোতি চাকমা|বেতছড়ি দোসর পাড়া সরঃ প্রাঃ বিঃ|01824660245
+নানিয়ারচর|বিমল কান্তি তালুকদার|চিরঞ্জীব দোসর পাড়া সরঃ প্রাঃ বিঃ|01553297365
+নানিয়ারচর|রাশেল চাকমা|পানছড়ি মুখ সরঃ প্রাঃ বিঃ|01828571787
+নানিয়ারচর|প্রশান্ত ময় চাকমা (ভা:)|ভাঙ্গামুড়া সরঃ প্রাঃ বিঃ|01557668548
+নানিয়ারচর|সতীশ চন্দ্র চাকমা|আলোকিত তৈন্যা পাড়া সরঃ প্রাঃ বিঃ|01827166261
+নানিয়ারচর|রিটন চাকমা|কমতলী সরঃ প্রাঃ বিঃ|01820356289
+নানিয়ারচর|মন চন্দ্র চাকমা (ভা:)|বাবুর পাড়া শৈরেশ্বরী সরঃ প্রাঃ বিঃ|01831092427
+নানিয়ারচর|স্নেহ বিকাশ চাকমা|টাকাছড়ি জুমিয়া পুনর্বাসন সরঃ প্রাঃ বিঃ|01820327381
+নানিয়ারচর|সুমন দত্ত দেওয়ান|শিলবন গ্রাম সরঃ প্রাঃ বিঃ|01552443481
+নানিয়ারচর|রিখা খীসা (চ.দা.)|সাবেক্ষ্যং করল্যাছড়ি সরঃ প্রাঃ বিঃ|01829508295
+নানিয়ারচর|ভগবান চন্দ্র চাকমা (চ.দা.)|নোয়াদম সরঃ প্রাঃ বিঃ|01557153104
+নানিয়ারচর|বিমল বসু চাকমা|চৈছড়ি সরঃ প্রাঃ বিঃ|01818183264
+নানিয়ারচর|মিটন দেওয়ান (ভা:)|কলক পাড়া সরঃ প্রাঃ বিঃ|01820327506
+নানিয়ারচর|সজীব চাকমা (ভা:)|শিলুন্যা সরঃ প্রাঃ বিঃ|01821961441
+নানিয়ারচর|সুপ্রিয় চাকমা (ভা:)|দার্য্যা পাড়া সরঃ প্রাঃ বিঃ|01552438409
+নানিয়ারচর|শান্তি প্রিয় চাকমা (ভা:)|মুলক্ষীছড়া সরঃ প্রাঃ বিঃ|01554572261
+নানিয়ারচর|লিটন চাকমা (ভা:)|লার্মা পাড়া সরঃ প্রাঃ বিঃ|01878746401
+নানিয়ারচর|রিপন আলো বড়–য়া (চ.দা.)|দি চেঙ্গী চাইল্ড হোম সরঃ প্রাঃ বিঃ|01822864546
+নানিয়ারচর|বিপুল চাকমা (ভা:)|দক্ষিণ কেঙ্গালছড়ি সরঃ প্রাঃ বিঃ|01820718607
+বরকল|সুব্রত চাকমা(ভার:প্রা:)|ভাইমিটাই সরকারি প্রাথমিক বিদ্যালয়|01557208992
+বরকল|কিরন চাকমা|লাইজু গ্রাম সরকারি প্রাথমিক বিদ্যালয়|01585344433
+বরকল|কাছেন রাখাইন|ধনুবাগ সরকারি প্রাথমিক বিদ্যালয়|01552607066
+বরকল|মোঃ কবির হোসেন|ছোট হরিণা সরকারি প্রাথমিক বিদ্যালয়|01849877774
+বরকল|দিদারুল আলম|ভূষণবাগ সরকারি প্রাথমিক বিদ্যালয়|01820305183
+বরকল|রবীন্দ্র চাকমা|বামের মহালছড়ি সরকারি প্রাথমিক বিদ্যালয়|01875557558
+বরকল|বনকান্তি চাকমা (ভারফ্রাঃ)|শুকনাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01559361890
+বরকল|প্রবীর মিত্র চাকমা|তারেংগা ঘাট সরকারি প্রাথমিক বিদ্যালয়|01631993796
+বরকল|কংকনা চাকমা|রকবিবছড়া সরকারি প্রাথমিক বিদ্যালয়|01557167750
+বরকল|মোঃ কামাল হোসেন|গোরস্থান সরকারি প্রাথমিক বিদ্যালয়|01876356087
+বরকল|শুভ্রা চক্রবর্তী|বগাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01853045369
+বরকল|সুরেশ কুমার চাকমা|উজ্জ্যাংছড়ি সরকারি প্রাথমিক বিদ্যালয়|01556776628
+বরকল|কৃঞ্চা দেওয়ান|সুয়ারীপাতা সরকারি প্রাথমিক বিদ্যালয়|01530047276
+বরকল|উদয় চাকমা|তালছড়া সরকারি প্রাথমিক বিদ্যালয়|01553118442
+বরকল|শরৎ কুমার চাকমা|পিত্তিছড়া সরকারি প্রাথমিক বিদ্যালয়|01828856074
+বরকল|মোহাম্মদ রফিকুল ইসলাম|ভূষণছড়া সরকারি প্রাথমিক বিদ্যালয়|01881037233
+বরকল|রবি চন্দ্র চাকমা|ভালুক্যাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01828848788
+বরকল|মো: শফিকুল ইসলাম|এরাবুনিয়া সরকারি প্রাথমিক বিদ্যালয়|01633034940
+বরকল|মোঃ শাহাদাত উল্লাহ|সুবান সরকারি প্রাথমিক বিদ্যালয়|01553121676
+বরকল|বিনয় কান্তি চাকমা|কুকিছড়া সরকারি প্রাথমিক বিদ্যালয়|01849892184
+বরকল|রূপা চাকমা|নন্দ ছড়া সরকারি প্রাথমিক বিদ্যালয়|01879523891
+বরকল|হারুন অর রশিদ|নিকসেন্দ্রা সরকারি প্রাথমিক বিদ্যালয়|01874025124
+বরকল|লক্ষী নাথ চাকমা|বরকল মডেল সরকারি প্রাথমিক বিদ্যালয়|01552724642
+বরকল|প্রনয় চাকমা|বেগেনাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01556701751
+বরকল|পুরঞ্জয় চাকমা|হালাম্বা সরকারি প্রাথমিক বিদ্যালয়|01855861112
+বরকল|মোঃ জালাল আহমদ|কুরকুটিছড়ি সরকারি প্রাথমিক বিদ্যালয়|01553122036
+বরকল|অমল চাকমা|ধামাইছড়া সরকারি প্রাথমিক বিদ্যালয়|015523822446
+বরকল|অনন্ত বিকাশ চাকমা|মিতিংগাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01864549966
+বরকল|প্রভাত কুমার চাকমা|কুসুমছড়ি সরকারি প্রাথমিক বিদ্যালয়|01556596897
+বরকল|রেবতী রঞ্জন চাকমা|দোছড়িপাড়া সরকারি প্রাথমিক বিদ্যালয়|01849897191
+বরকল|নন্দ দুলাল চাকমা|৩৩ হাজাছড়া সরকারি প্রাথমিক বিদ্যালয়|01612398540
+বরকল|কৃষ্ণ কুমার চাকমা|দেওয়ানচর সরকারি প্রাথমিক বিদ্যালয়|01554176638
+বরকল|রিপন দত্ত চাকমা|বিলছড়া সরকারি প্রাথমিক বিদ্যালয়|01556620242
+বরকল|দেব প্রসাদ চাকমা|বুরবানিয়া সরকারি প্রাথমিক বিদ্যালয়|01553757000
+বরকল|সুমতি চাকমা|পানছড়ি সরকারি প্রাথমিক বিদ্যালয়|01553120126
+বরকল|সুনীতি বিকাশ চাকমা|বরুনাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01585344400
+বরকল|প্রীতিকনা চাকমা|শুকরছড়ি সরকারি প্রাথমিক বিদ্যালয়|01553765682
+বরকল|বিপম চাকমা|শিলারডাক সরকারি প্রাথমিক বিদ্যালয়|01556700508
+বরকল|উত্তম কুমার চাকমা|বাঘাছোলা সরকারি প্রাথমিক বিদ্যালয়|01585329966
+বরকল|রিপন চাকমা|বেতছড়ি সরকারি প্রাথমিক বিদ্যালয়|01556700656
+বরকল|অজিত চৌধুরী|চাক্কাতলী সরকারি প্রাথমিক বিদ্যালয়|01556701761
+বরকল|জাহানারা বেগম|মাইচছড়ি সরকারি প্রাথমিক বিদ্যালয়|01881037363
+বরকল|সুজানা চাকমা|শিলছড়ি সরকারি প্রাথমিক বিদ্যালয়|01552743303
+বরকল|ফুলেশ চন্দ্র চাকমা|৪৬ হাজাছড়া সরকারি প্রাথমিক বিদ্যালয়|01556629315
+বরকল|প্রীতিময় চাকমা|কৈতরখীল সরকারি প্রাথমিক বিদ্যালয়|01552465083
+বরকল|জোনাকি চাকমা|পালসাইডিং সরকারি প্রাথমিক বিদ্যালয়|01557343020
+বরকল|তপন ত্রিপুরা|বুরবুরিছড়া সরকারি প্রাথমিক বিদ্যালয়|01552364795
+বরকল|ধন কুমার চাকমা|ঠেগাচাদরাছড়া সরকারি প্রাথমিক বিদ্যালয়|01556628613
+বরকল|অনিল বরন দেওয়ান (ভারপ্রাঃ)|ঠেগাআন্দার মানিক সরকারি প্রাথমিক বিদ্যালয়|01831472988
+বরকল|আব্দুল হামিদ|চান্দবীঘাট সরকারি প্রাথমিক বিদ্যালয়|01558948245
+বরকল|শ্যামল চাকমা (ভারপ্রাঃ)|মধ্যচাদরাছড়া সরকারি প্রাথমিক বিদ্যালয়|01828556138
+বরকল|সতীশময় চাকমা|ঠেগাকরল্যাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01553140252
+বরকল|স্নেহপ্রভা চাকমা|তৈজংকেরানিপাড়া সরকারি প্রাথমিক বিদ্যালয়|01585333777
+বরকল|দীলিপ কুমার চাকমা|সাইচাল সরকারি প্রাথমিক বিদ্যালয়|01552364574
+বরকল|সোহাগ চাকমা|ঠেগামূখ সরকারি প্রাথমিক বিদ্যালয়|01557222391
+বরকল|মোঃ তৌহিদুল ইসলাম|জগন্নাথছড়া সরকারি প্রাথমিক বিদ্যালয়|01554363853
+বরকল|উ¤্রাচিং মারমা|সাইচাল আইমাছড়া সরকারি প্রাথমিক বিদ্যালয়|01850613218
+বরকল|তরুন বিকাশ চাকমা|সি,এম,পাড়া সরকারি প্রাথমিক বিদ্যালয়|01553600759
+বরকল|মিজানুর রহমান|বড়কুড়াদিয়া সরকারি প্রাথমিক বিদ্যালয়|01881072661
+বরকল|রিকো চাকমা|গুইছড়ি সরকারি প্রাথমিক বিদ্যালয়|01838462652
+বরকল|কান্তি বিকাশ চাকমা|কালাপুনাছড়া সরকারি প্রাথমিক বিদ্যালয়|01585341166
+বরকল|ফুল মোহন চাকমা|খুব্বাংমূখ সরকারি প্রাথমিক বিদ্যালয়|01556704538
+বরকল|মোঃ আলমগির হোসেন|বরুনাছড়ি জোন সরকারি প্রাথমিক বিদ্যালয়|01837842200
+বরকল|জনাব সুবেশ ধন চাকমা|ডি আই সাক্রাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01553118479
+বরকল|মিচিকো খীসা|নাড়াইছড়ি সরকারি প্রাথমিক বিদ্যালয়|01557209003
+বরকল|মোঃ কামরুল হাসান (ভারপ্রা)|দক্ষিণ বরুনাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01843588915
+বরকল|রাহাত আরা জাহাান|কুরকুটিছড়ি গুচ্ছগ্রাম সরকারি প্রাথমিক বিদ্যালয়|01871098601
+বরকল|মিলিন্দ চাকমা|মধ্যম উজ্জাংছড়ি সরকারি প্রাথমিক বিদ্যালয়|01554176007
+বরকল|মায়াধন চাকমা|মহালছড়ি সরকারি প্রাথমিক বিদ্যালয়|01553129438
+বরকল|মায়া রতন চাকমা|পেত্যাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01552473862
+বরকল|উৎপলা চাকমা|বাঘামূখ সরকারি প্রাথমিক বিদ্যালয়|01553465988
+বরকল|কৃষ্ণা রানী বিশ্বাস|চাপ্পিয়াছড়া সরকারি প্রাথমিক বিদ্যালয়|01552735783
+বরকল|মোঃ দেলোয়ার হোসেন|রহিমটিলা সরকারি প্রাথমিক বিদ্যালয়|01879528030
+বরকল|ভানু লাল দাশ|সুন্দরখাঁ ছড়া সরকারি প্রাথমিক বিদ্যালয়|01874025102
+বরকল|মনোনিতা চাকমা|রকবিবছড়া বটটলা সরকারি প্রাথমিক বিদ্যালয়|01818430236
+বরকল|রাজীব চাকমা|ডলুছড়ি সরকারি প্রাথমিক বিদ্যালয়|01552724633
+বরকল|বিমলেন্দু চাকমা|ভাইবোনছড়া সরকারি প্রাথমিক বিদ্যালয়|018113460166
+বরকল|মোঃ রেজাউল করিম|নিউ বগাছড়ি সরকারি প্রাথমিক বিদ্যালয়|01553120197
+বরকল|ধন বিকাশ চাকমা|কুকিছড়া ২ সরকারি প্রাথমিক বিদ্যালয়|01557194565
+বরকল|তপতী চাকমা|গৌধুলী সরকারি প্রাথমিক বিদ্যালয়|01551833753
+বরকল|নাসরিন আক্তার|ঝরঝরিছড়া সরকারি প্রাথমিক বিদ্যালয়|01553119995
+বরকল|মংলাইয় রাখাইন|তাগলকছড়া সরকারি প্রাথমিক বিদ্যালয়|01556700726
+বরকল|মিকো চাকমা (ভারপ্রাঃ)|তাগলকছড়া-২ সরকারি প্রাথমিক বিদ্যালয়|01838112059
+জুরাছড়ি|সুগত চাকমা প্রশি,|বনযোগীছড়াস: প্রা: বিদ্যা:|01552363844
+জুরাছড়ি|রেখী চাকমা প্রশি,|সুবলং কুসুমছড়ি স: প্রা: বিদ্যা:|01552430337
+জুরাছড়ি|সুমনা তালুকদার প্রশি,|চকপতিঘাট স: প্রা: বিদ্যা:|01553602732
+জুরাছড়ি|রিপন চাকমা প্রশি,|লুলাংছড়ি স: প্রা: বিদ্যা:|01553758119
+জুরাছড়ি|নিত্যানন্দ চাকমা, প্রশি,|পানছড়ি ভুঃ মঃ স: প্রা: বিদ্যা:|01552429991
+জুরাছড়ি|জ্ঞানজ্যোতি চাকমা, প্রশি,|ঘিলাতলী স: প্রা: বিদ্যা:|01556980117
+জুরাছড়ি|রবি চাকমা , প্রশি,|শিলছড়ি স: প্রা: বিদ্যা:|01556749235
+জুরাছড়ি|প্রীতি কুসুম দেওয়ান, সশি ,|জামুরাছড়িস: প্রা: বিদ্যা:|01552431151
+জুরাছড়ি|মোঃ আঃ হাই প্রধানিয়া, প্রশি,|ডেবাছড়া স: প্রা: বিদ্যা:|01552379660
+জুরাছড়ি|দিমান্তলাল চাকমা, প্রশি,|সামিরামুুখ স: প্রা: বিদ্যা:|01552435179
+জুরাছড়ি|মিনু চাকমা,প্রশি,|কুবান বালুখালী স: প্রা: বিদ্যা:|01553458906
+জুরাছড়ি|মৃদুল কান্তি চাকমা, প্রশি,|হাজ্যামাছড়া স: প্রা: বিদ্যা:|01556581400
+জুরাছড়ি|মাধবী খীসা, প্রশি,|চুমাচুমি স: প্রা: বিদ্যা:|01556465887
+জুরাছড়ি|নিরুপম ত্রিপুরা প্রশি,|শুকনাছড়িস: প্রা: বিদ্যা:।|01556532760
+জুরাছড়ি|সঞ্জীব চাকমা, প্রঃ শিঃ|ছোট পানছড়ি স: প্রা: বিদ্যা:|01553123853
+জুরাছড়ি|মমতা চাকমা, প্রশি ,|পেরাছড়িমুখ স: প্রা: বিদ্যা:|01553118505
+জুরাছড়ি|তপন চাকমা, সহ:শি:|ফকিরাছড়ি স: প্রা: বিদ্যা:|01825015018
+জুরাছড়ি|হিরণ বিজয় চাকমা, প্রঃশিঃ|বড়মইন জুরাছড়ি স: প্রা: বিদ্যা:|01553604100
+জুরাছড়ি|রাকেশ চাকমা, প্রশি,|মাধবছড়া স: প্রা: বিদ্যা:|01557667741
+জুরাছড়ি|রিন্টু চাকমা, প্রশি,|বামের মৈদং স: প্রা: বিদ্যা:|01559316900
+জুরাছড়ি|প্রদীপ কুমার ত্রিপুরা, প্রশি|জনতা আদর্শঃ স: প্রা: বিদ্যা:|01554323998
+জুরাছড়ি|রনেন্দু বিকাশ চাকমা প্রশি|হাজাছড়া স: প্রা: বিদ্যা:|01556565501
+জুরাছড়ি|আনন্দময় চাকমা সশি ,|জামিরছড়ি স: প্রা: বিদ্যা:|01553767551
+জুরাছড়ি|লালপার পাংখোয়া, সঃশিঃ|ভূয়াতলীছড়া স: প্রা: বিদ্যা:।|01521387061
+জুরাছড়ি|পমপম বড়–য়া , সশি ,|বরকলক স: প্রা: বিদ্যা:।|01820301990
+জুরাছড়ি|আয়ন চন্দ্র চাকমা, প্রঃ শিঃ|ধামাইপাড়া স: প্রা: বিদ্যা:|01536032023
+জুরাছড়ি|ধনকুমার দেওয়ান, প্রঃ শিঃ|কতরখাইয়া স: প্রা: বিদ্যা:|01554981010
+জুরাছড়ি|দিলীপ কুমার চাকমা, সহঃ শিঃ|ফরেষ্টভিলেজার স: প্রা: বিদ্যা:|01552371985
+জুরাছড়ি|অরুন চন্দ্র চাকমা, প্রশি|কাঠালতলী স: প্রা: বিদ্যা:|01551644238
+জুরাছড়ি|জিতেন চন্দ্র চাকমা,প্রঃ শিঃ|সাপছড়ি স: প্রা: বিদ্যা:|01585347744
+জুরাছড়ি|নিপন চাকমা,সহঃ শিঃ|নোয়াপাড়া স: প্রা: বিদ্যা:|01554727963
+জুরাছড়ি|যতীশ চন্দ্র চাকমা,প্রঃ শিঃ|তেছড়িপাড়া স: প্রা: বিদ্যা:|01559450802
+জুরাছড়ি|অলকা চাকমা,সহঃ শিঃ|বহেরাছড়ি স: প্রা: বিদ্যা:।|01552465088
+জুরাছড়ি|মল্লিকা চাকমা,|দূরহাটছড়া স: প্রা: বিদ্যা:।|01535219701
+জুরাছড়ি|চৈতালী চাকমা,|চালকাপাড়া স: প্রা: বিদ্যা:।|01556710086
+জুরাছড়ি|মিহির চাকমা|শৈয়ালপাড়া স: প্রা: বিদ্যা:।|01557056570
+জুরাছড়ি|সত্যপ্রিয় চাকমা,|বারুদগোলা স: প্রা: বিদ্যা:।|01881761123
+জুরাছড়ি|রুপেন্দু চাকমা,|পেকপাড়া স: প্রা: বিদ্যা:।|01554284844
+জুরাছড়ি|টুনি চাকমা,|ডানে জুরাছড়ি স: প্রা: বিদ্যা:।|01551745809
+জুরাছড়ি|শুভদর্শী চাকমা,|আমতলা স: প্রা: বিদ্যা:।|01515254831
+জুরাছড়ি|সুভাষ মিত্র চাকমা, প্রশি ,|চেয়ারম্যাপাড়া স: প্রা: বিদ্যা:।|01553122037
+জুরাছড়ি|সুনীল বরন চাকমা,|বালোশপাড়া স: প্রা: বিদ্যা:।|01553125451
+জুরাছড়ি|অক্ষয় কুমার চাকমা,|শিলছড়ি মোনপাড়া স: প্রা: বিদ্যা:।|01557317439
+জুরাছড়ি|দুলাল চাকমা,|ভূয়াতলীছড়া স: প্রা: বিদ্যা:।|01829662105
+জুরাছড়ি|দিমান্ত চাকমা,|বাদলহাটছড়া স: প্রা: বিদ্যা:।|01557170836
+জুরাছড়ি|মঙ্গল চন্দ্র চাকমা|আমতলা বাদলঃছড়া স: প্রা: বিদ্যা:।|01521453052
+জুরাছড়ি|সুনীল বরন চাকমা,|ছোট কড়ইদিয়া স: প্রা: বিদ্যা:।|01557338274
+জুরাছড়ি|ধনবান চাকমা,|নাকশাতলী স: প্রা: বিদ্যা:।|01557314381
+জুরাছড়ি|অনিল বরন চাকমা|চুমাচুমি স: প্রা: বিদ্যা:।|01876606549
+জুরাছড়ি|বীরবতী চাকমা ,|আনন্দপাড়া স: প্রা: বিদ্যা:।|01515254940
+জুরাছড়ি|দীঘোল চাকমা,|মন্দিরা ছড়া স: প্রা: বিদ্যা:।|01556701585
+জুরাছড়ি|রনিকা চাকমা,|কুলুকপানিছড়া স: প্রা: বিদ্যা:।|01823550973
+জুরাছড়ি|স্নেহ কুমার চাকমা,|শীমেইতলী স: প্রা: বিদ্যা:।|01552607330
+জুরাছড়ি|সুবল বিজয় চাকমা,|বালুছড়া স: প্রা: বিদ্যা:।|01823925441
+জুরাছড়ি|সুনীতি রঞ্জন চাকমা,|করল্যাছড়ি স: প্রা: বিদ্যা:।|01853135274
+জুরাছড়ি|রিন্টু চাকমা,|ডলুছড়ি স: প্রা: বিদ্যা:।|1535219671
+জুরাছড়ি|রিনা চাকমা,|কলাবনছড়া স: প্রা: বিদ্যা:।|01860099824
+জুরাছড়ি|ধন চাকমা,|ঘিলালুদিছড়া স: প্রা: বিদ্যা:।|01552727688
+জুরাছড়ি|সুজল চাকমা|আদেইবাপছড়া স: প্রা: বিদ্যা:|01557172188
+জুরাছড়ি|দিলীপ কুমার ত্রিপুরা|মঙ্গলধনছড়া স: প্রা: বিদ্যা:|01553765774
+জুরাছড়ি|জ্ঞান রতন চাকমা|শালকাপাড়া স: প্রা: বিদ্যা:|01553748960
+লংগদু|তেজেন্দ্র লাল চাকমা|ডানের লংগদু|01552711770
+লংগদু|জীনা চাকমা|রাঙ্গাপানিছড়া|01556564426
+লংগদু|রীনা চাকমা|বড় কাট্টলী|01553765185
+লংগদু|প্রতিরঞ্জন চাকমা|নলুয়া বড়কলক|01553128595
+লংগদু|জ্যোতি লাল চাকমা|খাড়িকাটা|01556645792
+লংগদু|অরুন দেওয়ান|কাট্টলী|01556701892
+লংগদু|উৎপল চাকমা|দাদীপাড়া|01556594797
+লংগদু|স্মৃতি বিকাশ চাকমা|তবলছড়ি|01553105574
+লংগদু|লূনী চাকমা|তালছড়ি|01861184111
+লংগদু|মোঃ আব্দুল আলীম|ভাইবোনছড়া|01908402676
+লংগদু|মোঃ জামাল হোসাইন|উত্তর সোনাই|01518356867
+লংগদু|কিরণ বিকাশ চাকমা|সোনাই|01557437498
+লংগদু|মান্টি চাকমা|ভাইবোনছড়া|01553602758
+লংগদু|বহ্নি শিখা দে|তিনটিলা|01828920287
+লংগদু|মুর্শিদা বেগম|গাঁথাছড়া আদর্শগ্রাম|01554730943
+লংগদু|মো: আনোয়ার হোসেন|মাইনীমুখ|01552711574
+লংগদু|তপন দেওয়ান|ইসলামাবাদ|01554114372
+লংগদু|মো: মোমিনুল হক|উগলছড়ি মহাজনপাড়া|01820305059
+লংগদু|জাহাঙ্গীর আলম|রাঙ্গীপাড়া|01820353365
+লংগদু|মোঃ ওমর ফারুক|মারিশ্যাচর মু/ব্লক|01635030800
+লংগদু|মোহাম্মদ রেজাউল করিম|বগাচতর|01557667000
+লংগদু|আমিনুল হক|গাঁথাছড়া গাউছপুর|01556620039
+লংগদু|সঞ্জয় কুমার দাশ|জালিয়াপাড়া|01556607968
+লংগদু|সুনীতি চাকমা|ফোরেরমুখ|01554553588
+লংগদু|সুমিত্র চাকমা|শিলকাটাছড়া|01552351411
+লংগদু|সুমন কান্তি দাশ|খাগড়াছড়ি|01859358040
+লংগদু|মোঃ ইলিয়াছ|ভাসান্যাদম|01820324287
+লংগদু|মঞ্জুরুল হক|চাইল্যাতলী|01840080314
+লংগদু|মোঃ আকরাম|ঘনমোড়|01820184017
+লংগদু|রেজাউল হক মানিক|মারিশ্যারচর রাজনগর|01840026073
+লংগদু|মোঃ সাবিদ আলী|গুলশাখালী মডেল|01828823651
+লংগদু|ফারুক হোসেন|কাকপাড়িয়া|01826674569
+লংগদু|নিলোৎপল চাকমা|ভাঙ্গামুড়া|01553243444
+লংগদু|কল্যাণ মিত্র চাকমা|আটারকছড়া|01556534325
+লংগদু|অনন চাকমা|করল্যাছড়ি|01827185435
+লংগদু|অমলেন্দু বিকাশ চাকমা|উল্টাছড়ি (১)|01557917738
+লংগদু|মো: মজিবুর রহমান ভুঁইয়া|ইয়ারিংছড়ি|01830320181
+লংগদু|সুবোধ দেওয়ান|শিলাছড়া|01815581809
+লংগদু|রমেন চাকমা|উল্টাছড়ি (২)|01553102131
+লংগদু|শাহ আহমেদ জামাল|সোনারগাঁও|01827185559
+লংগদু|দীপ্তময় চাকমা|বামের লংগদু|01553211157
+লংগদু|ফরিদ উদ্দিন তালুকদার|এপি|01828852698
+লংগদু|রঞ্জিত কুমার চাকমা|বেংগীছড়া|01824959456
+লংগদু|সিদ্দিকুর রহমান|হোসেনপুর|01556460458
+লংগদু|মোবারক হোসেন|১০নং রাঙ্গাপানিছড়া|01858839565
+লংগদু|মোঃ আলী হোসেন|দক্ষিণ মারিশ্যারচর|01835161951
+লংগদু|সুনীল চাকমা|পূন্যসেন কার্বারীপাড়া|01553673412
+লংগদু|সুনীল বরণ চাকমা|ডানে আটারকছড়া|01554176291
+লংগদু|জাকির হোসেন|কালাপাকুজ্যা|01862044778
+লংগদু|শর্মিতা চাকমা|মানিকজোড়ছড়া|01556609871
+লংগদু|হুমায়ুন কবির|ইসলামপুর|01556619345
+লংগদু|মো: নিজাম উদ্দিন|মারিশ্যারচ মু/ব্লক|01862009550
+লংগদু|ঝুনু খীসা|মানিক্যপাড়া চিকনচান|01552744652
+লংগদু|রুমান চাকমা|ভাংগামুড়া মডেল|01828917516
+লংগদু|সুভাষ কান্তি চাকমা|গদাবান্যাছড়া|01559059924
+লংগদু|রীপা চাকমা|লেমুছড়ি|01553704589
+লংগদু|সুনীল কান্তি চাকমা|বামে খাড়িকাটা|01553131702
+লংগদু|সুরেশ সেন চাকমা|মধ্য খাড়িকাটা|01820349257
+লংগদু|অনন্ত চাকমা|দক্ষিণ সোনাই|01832190867
+লংগদু|আবু তালেব|ঠেকাপাড়া|01553116870
+লংগদু|মোঃ আকন মিজানুর রহমান|তালছড়ি|01557311914
+লংগদু|রিংখী খীসা|বদনীছড়া|01556613465
+লংগদু|মো: আলী|জারুলবাগান|01559076770
+লংগদু|শান্তি রানী চাকমা|কলাবুনিয়া|01553124599
+লংগদু|সজল কান্তি দাশ|রাজনগর|01556570731
+লংগদু|সাইফুল ইসলাম|গোলটিলা|01557088370
+লংগদু|ওমর ফারুক|দক্ষিণ রহমতপুর|01552435069
+লংগদু|কামাল হোসাইন|মোহাম্মদপুর|01849520200
+লংগদু|মাসুদ রানা|পেটাইন্যামাছড়া|01833535903
+লংগদু|তাহেরা বেগম|বাইট্টাপাড়া|01556840940
+লংগদু|অতুল বিকাশ চাকমা|বান্দরতলাছড়া|01552435075
+লংগদু|সুনীল বিকাশ চাকমা|মধ্য আদম|01554945746
+লংগদু|ধন কুমার চাকমা|চুচ্যাংমনিমুখ|01872250152
+বাঘাইছড়ি|মোঃ নুরুল ইসলাম|কাচালং মডেল স: প্রা: বিদ্যা:|01556700280
+বাঘাইছড়ি|মোহাম্মদ আব্দুর নূর|বটতলী স: প্রা: বিদ্যা:|01555045224
+বাঘাইছড়ি|মানিক কুমার চাকমা|পশ্চিম লাল্যাঘোনা স: প্রা: বিদ্যা:|01554603604
+বাঘাইছড়ি|মোঃ রবিউল হোসেন|বাঘাইছড়ি স: প্রা: বিদ্যা:|01879431722
+বাঘাইছড়ি|মোঃ আব্দুর শুক্কুর|মারিশ্যা স: প্রা: বিদ্যা:|01553144041
+বাঘাইছড়ি|মোঃ রহমত উল্ল্যাহ দেওয়ান|মুসলিম ব্লক স: প্রা: বিদ্যা:|1553146171
+বাঘাইছড়ি|রিপানজু চাকমা|পাকুজ্যাছড়ি আবাসিক স: প্রা: বিদ্যা:|01645951677
+বাঘাইছড়ি|মিন্টু চাকমা|বাঘাইছড়িমূখ স: প্রা: বিদ্যা:|01557810177
+বাঘাইছড়ি|বিকাশন খীসা|তুলাবান স: প্রা: বিদ্যা:|01553109247
+বাঘাইছড়ি|মোঃ হাসান|কদমতলী স: প্রা: বিদ্যা:|01552424827
+বাঘাইছড়ি|মনোরঞ্জন চাকমা|নিউ লংকর স: প্রা: বিদ্যা:|01866957608
+বাঘাইছড়ি|সোমসাম পাংখোয়া|লংকর স: প্রা: বিদ্যা:|01557152932
+বাঘাইছড়ি|নান্তা তালুকদার|বাঘাইছড়ি আদর্শ স: প্রা: বিদ্যা:|01554580105
+বাঘাইছড়ি|প্রগতি চাকম্|ানিউ লাল্যাঘোনা স: প্রা: বিদ্যা:|01536424348
+বাঘাইছড়ি|রসায়ন চাকমা|রুইলুই স: প্রা: বিদ্যা:|1536031477
+বাঘাইছড়ি|সমরপন চাকমা|তুইচুই স: প্রা: বিদ্যা:|01550609396
+বাঘাইছড়ি|কল্যান চাকমা|লম্বাছড়া স: প্রা: বিদ্যা:|01554601929
+বাঘাইছড়ি|সুজিত বিকাশ চাকমা|শিজকমূখ স: প্রা: বিদ্যা:|01557811520
+বাঘাইছড়ি|দয়েন্ত কুমার চাকমা|শিয়ালদাই লুই স: প্রা: বিদ্যা:|01557810803
+বাঘাইছড়ি|দিশারী চাকমা|বেটলিং স: প্রা: বিদ্যা:|01554727576
+বাঘাইছড়ি|অরুন বিকাশ চাকমা|খাগড়াছড়ি স: প্রা: বিদ্যা:|01832956668
+বাঘাইছড়ি|সুকিরন চাকমা|কচুছড়ি স: প্রা: বিদ্যা:|01554606431
+বাঘাইছড়ি|সংহিতা চাকমা|মোরঘোনাছড়া স: প্রা: বিদ্যা:|01521411743
+বাঘাইছড়ি|উল্লাস চাকমা|হীরারচর স: প্রা: বিদ্যা:|01553284875
+বাঘাইছড়ি|পছন্দ মুনি চাকমা|করেঙ্গাতলী স: প্রা: বিদ্যা:|01552715266
+বাঘাইছড়ি|নবীন কান্তি চাকমা|বঙ্গলতলী স: প্রা: বিদ্যা:|01559738310
+বাঘাইছড়ি|মোঃ সিরাজুল ইসলাম|চিন্তারামছড়া স: প্রা: বিদ্যা:|01862868497
+বাঘাইছড়ি|হিমায়ন খীসা|রুপালী স: প্রা: বিদ্যা:|01556559648
+বাঘাইছড়ি|উৎপল চাকমা|তাংগুমাছড়া স: প্রা: বিদ্যা:|01613761839
+বাঘাইছড়ি|সমর জীবন চাকমা|নব নালন্দা স: প্রা: বিদ্যা:|01533839370
+বাঘাইছড়ি|মোঃ ইউনুচ|ডাঙ্গাছড়া স: প্রা: বিদ্যা:|01820301244
+বাঘাইছড়ি|রপায়ন চাকমা|সারোয়াতলী স: প্রা: বিদ্যা:|01554580159
+বাঘাইছড়ি|মোঃ কিতাব আলী|বাঘাইহাট স: প্রা: বিদ্যা:|01556745987
+বাঘাইছড়ি|মোঃ আবুল কালাম আজাদ|মাহিল্যা স: প্রা: বিদ্যা:|01556613950
+বাঘাইছড়ি|মোঃ হামিদুর রহমান|পাবলাখালী(আমতলী) স: প্রা: বিদ্যা:|01820428898
+বাঘাইছড়ি|রুপক চাকমা|আমতলী স: প্রা: বিদ্যা:|01553671118
+বাঘাইছড়ি|মোঃ ইউসুফ মীর|হাগলাছড়া স: প্রা: বিদ্যা:|01557132382
+বাঘাইছড়ি|সুশীল জীবন চাকমা|উলুছড়ি স: প্রা: বিদ্যা:|01552716211
+বাঘাইছড়ি|প্রিয় কিশোর চাকমা|পশ্চিম বড়াদম স: প্রা: বিদ্যা:|01553293002
+বাঘাইছড়ি|মোঃ সাইফুল ইসলাম|দক্ষিণ রুপালী স: প্রা: বিদ্যা:|01831763322
+বাঘাইছড়ি|বিপর্শী চাকমা|খেদারমারা স: প্রা: বিদ্যা:|01647118551
+বাঘাইছড়ি|মোঃ আবু তাহের|পাগয্যাছড়ি স: প্রা: বিদ্যা:|01815661859
+বাঘাইছড়ি|সুনিল বিকাশ চাকমা|নলবনিয়া স: প্রা: বিদ্যা:|01553780742
+বাঘাইছড়ি|মোঃ নাজিম উদ্দিন|কংলাক স: প্রা: বিদ্যা:|01553111422
+বাঘাইছড়ি|হেমন্ত কুমার চাকমা|পাবলাখালী স: প্রা: বিদ্যা:|01552381869
+বাঘাইছড়ি|সমীরন চাকমা|ছয়নালছড়া স: প্রা: বিদ্যা:|01828816855
+বাঘাইছড়ি|শুক্রচার্য্য চাকমা|রুপকারী স: প্রা: বিদ্যা:|01557346195
+বাঘাইছড়ি|প্রবীর মিত্র চাকমা|দুরছড়ি স: প্রা: বিদ্যা:|01554573916
+বাঘাইছড়ি|নয়ন কান্তি চাকমা|উত্তর বঙ্গলতলী স: প্রা: বিদ্যা:|01554827880
+বাঘাইছড়ি|বিভা চাকমা|উলুছড়ি রাবার প্রকল্প স: প্রা: বিদ্যা:|01557684266
+বাঘাইছড়ি|জিতায়ন চাকমা|নব অজান্তা স: প্রা: বিদ্যা:|01552723646
+বাঘাইছড়ি|নোবেল চাকমা|পূর্ব আমতলী স: প্রা: বিদ্যা:|01843013178
+বাঘাইছড়ি|সুপ্তা চাকমা|নব পেরাছড়া স: প্রা: বিদ্যা:|01554360229
+বাঘাইছড়ি|নির্মল কান্তি চাকমা|নব পেরাছড়া(১৫০০) স: প্রা: বিদ্যা:|01825246729
+বাঘাইছড়ি|মো জসিম উদ্দিন|মারিশ্যাছড়া স: প্রা: বিদ্যা:|01553145939
+বাঘাইছড়ি|এলপন চাকমা|শিশক দোসর স: প্রা: বিদ্যা:|01556597957
+বাঘাইছড়ি|বিনয় কান্তি চাকমা|পেরাছড়া স: প্রা: বিদ্যা:|01552693203
+বাঘাইছড়ি|সুরেন্দ্র লাল চাকমা|ভুইয়াছড়া স: প্রা: বিদ্যা:|01557666854
+বাঘাইছড়ি|উপমা চাকমা|খেদারছড়া স: প্রা: বিদ্যা:|01553144967
+বাঘাইছড়ি|সেলিনুর আক্তার|মন্দিরাছড়া স: প্রা: বিদ্যা:|01553142217
+বাঘাইছড়ি|বকুল কান্তি চাকমা|পশ্চিম খেদারমারা স: প্রা: বিদ্যা:|01865688641
+বাঘাইছড়ি|তানসেন চাকমা|নব পশ্চিম হীরারচার স: প্রা: বিদ্যা:|01553128773
+বাঘাইছড়ি|কালিদাস চাকমা|দক্ষিন পাবলাখালী স: প্রা: বিদ্যা:|01881095204
+বাঘাইছড়ি|শাহীন আক্তার|কিশলয় স: প্রা: বিদ্যা:|01551929567
+বাঘাইছড়ি|কিরন বিকাশ চাকমা|পশ্চিম বালুখালী স: প্রা: বিদ্যা:|01553104441
+বাঘাইছড়ি|মোঃ হোসেন|পতেঙ্গাছড়া ভূপেন্দ্রলাল কাবারী পাড়া স: প্রা: বিদ্যা:|01556611501
+বাঘাইছড়ি|লাভলী চাকমা|পশ্চিম রুপকারী স: প্রা: বিদ্যা:|01557418786
+বাঘাইছড়ি|অর্পনা চাকমা|বেতাগীছড়া স: প্রা: বিদ্যা:|01552733554
+বাঘাইছড়ি|কিরণ বিকাশ চাকমা|চন্দ্র মোহন কার্বারী পাড়া স: প্রা: বিদ্যা:|01554785355
+বাঘাইছড়ি|সন্তোষ প্রিয় চাকমা|বটতলী প্রকল্প স: প্রা: বিদ্যা:|01876606623
+বাঘাইছড়ি|রিমা চাকমা|লাঙ্গলমারা স: প্রা: বিদ্যা:|01536424310
+বাঘাইছড়ি|যতীন বিহারী চাকমা|উত্তর খাগড়াছড়ি স: প্রা: বিদ্যা:|01872249317
+বাঘাইছড়ি|হেম রঞ্জন চাকমা|উত্তর সারোয়াতলী স: প্রা: বিদ্যা:|01820717121
+বাঘাইছড়ি|মোঃ মুজিবুর রহমান|গঙ্গারামমূখ স: প্রা: বিদ্যা:|01556596835
+বাঘাইছড়ি|সৈয়দা উম্মেল খায়ের ফাতেমা|মাচালং মিলনপাড়া স: প্রা: বিদ্যা:|01554597422
+বাঘাইছড়ি|শৈব রাণী চাকমা|ডায়ামাজ্যাছড়া স: প্রা: বিদ্যা:|01556627111
+বাঘাইছড়ি|সুবিমল চাকমা|জীবতলী কে এল স: প্রা: বিদ্যা:|01556587260
+বাঘাইছড়ি|স্বান্তনা চাকমা|ভাইবোনছড়া স: প্রা: বিদ্যা:|01557666822
+বাঘাইছড়ি|জ্যোতিষ চাকমা|লক্ষীছড়ি স: প্রা: বিদ্যা:|01867386712
+বাঘাইছড়ি|অবিরাম চাকমা|পূর্ব বঙ্গলতলী স: প্রা: বিদ্যা:|01831487369
+বাঘাইছড়ি|ক্যামিলো চাকমা|মহিষপয্যা স: প্রা: বিদ্যা:|01556606111
+বাঘাইছড়ি|সমরানী চাকমা|মধ্যম বঙ্গলতলী স: প্রা: বিদ্যা:|01557904877
+বাঘাইছড়ি|সুশান্ত চাকমা|দক্ষিন বঙ্গলতলী ¯্রপাবি|01554607681
+বাঘাইছড়ি|জয়ন্ত চাকমা|দোসর বাজার স: প্রা: বিদ্যা:|01552500191
+বাঘাইছড়ি|পুস্প বিকাশ তালুকদার|তাংগুমামূখ স: প্রা: বিদ্যা:|01559314632
+বাঘাইছড়ি|সাধন কুমার চাকমা|বড় মাহিল্যা সাগাদিয়া স: প্রা: বিদ্যা:|01554573960
+বাঘাইছড়ি|ধীরসেন চাকমা|উগলছড়ি স: প্রা: বিদ্যা:|01828116704
+বাঘাইছড়ি|বিউটি চাকমা|থকখুলা কার্বারী পাড়া স: প্রা: বিদ্যা:|01552716266
+বাঘাইছড়ি|রওশনারা|আয়নামতি আজিজপাড়া স: প্রা: বিদ্যা:|01554792801
+বাঘাইছড়ি|অনুভুষন চাকমা|জারুলছড়ি স: প্রা: বিদ্যা:|01553294083
+বাঘাইছড়ি|বর্না চাকমা|মধ্যম উগলছড়ি স: প্রা: বিদ্যা:|01554221371
+বাঘাইছড়ি|তাইবুন নেছা|বর্ডার গার্ড স: প্রা: বিদ্যা:|01553146180
+বাঘাইছড়ি|বকুল কান্তি চাকমা|কচুছড়ি আদর্শ স: প্রা: বিদ্যা:|01552715192
+বাঘাইছড়ি|জলি চাকমা|পাকুয়াখালী স: প্রা: বিদ্যা:|01556778371
+বাঘাইছড়ি|রিপন চাকমা|উলুছড়া স: প্রা: বিদ্যা:|01854359132
+বাঘাইছড়ি|বিপুল কান্তি চাকমা|করল্যাছড়িমূখ স: প্রা: বিদ্যা:|01864709085
+বাঘাইছড়ি|প্রিয় লাল চাকমা|কলাবুনিয়া স: প্রা: বিদ্যা:|01535880580
+বাঘাইছড়ি|তনুজ চাকমা|আলম ডিপু স: প্রা: বিদ্যা:|01867627544
+বাঘাইছড়ি|রাজীব চাকমা|কজোইছড়ি স: প্রা: বিদ্যা:|01557170407
+বাঘাইছড়ি|সুখপ্রিয় চাকমা|দক্ষিন মেলাছড়া স: প্রা: বিদ্যা:|01647525267
+বাঘাইছড়ি|রীতেশ চাকমা|নন্দরাম স: প্রা: বিদ্যা:|01624318676
+বাঘাইছড়ি|রিতেশ চাকমা|থালকুম্ভ স: প্রা: বিদ্যা:|01553294103
+বাঘাইছড়ি|প্রিয় লাল ত্রিপুরা|বেতবুনিয়া স: প্রা: বিদ্যা:|01553743031
+বাঘাইছড়ি|ইশিকা চাকমা|কজোইতুলি স: প্রা: বিদ্যা:|01552705205
+বাঘাইছড়ি|বসুমিত্র চাকমা|চিল্যাতুলি স: প্রা: বিদ্যা:|01820746048
+বাঘাইছড়ি|সুজনিতা চাকমা|উজানছড়ি স: প্রা: বিদ্যা:|01535029693
+বাঘাইছড়ি|স্মৃতি প্রকাশ চাকমা|পূর্ব ভূয়াছড়ি স: প্রা: বিদ্যা:|01552733832
+বাঘাইছড়ি|জগদীশ রোয়াজা|হামাচাং ফুরোংনি স: প্রা: বিদ্যা:|01556823866
+বাঘাইছড়ি|রিটন চাকমা|ডাব আদাম স: প্রা: বিদ্যা:|01556700774
+বাঘাইছড়ি|দোয়েল চাকমা|বড় কংলাক স: প্রা: বিদ্যা:|01553122853
+বাঘাইছড়ি|পতেন্দ্র লাল ত্রিপুরা|লংতিয়ান স: প্রা: বিদ্যা:|01889746225
+বাঘাইছড়ি|রিয়েল চাকমা|শিজক মন্দিরাছড়া স: প্রা: বিদ্যা:|01823836713
+বাঘাইছড়ি|সূর্য লাল ত্রিপুরা|থলছড়া স: প্রা: বিদ্যা:|01866957780
+বাঘাইছড়ি|দীপন চাকমা|লক্ষীধন কার্বারী পাড়া স: প্রা: বিদ্যা:|01878287662
+বাঘাইছড়ি|জয়দেব তালুকদার|দাড়িপাড়া স: প্রা: বিদ্যা:|01841444098
+বাঘাইছড়ি|লক্ষী কুমার চাকমা|রেতকাবা স: প্রা: বিদ্যা:|01552502376
+কাপ্তাই|ফুলবানু তঞ্চঙ্গ্যা|দেবতাছড়ি স: প্রা: বিদ্যা:|01552974983
+কাপ্তাই|মমতা চাকমা|মুড়ালী পাড়া স: প্রা: বিদ্যা:|01820356528
+কাপ্তাই|মিনা তঞ্চঙ্গ্যা|সাপছড়ি স: প্রা: বিদ্যা:|01820316605
+কাপ্তাই|নন্দলাল তঞ্চঙ্গ্যা|পাগলী পাড়া স: প্রা: বিদ্যা:|01834621697
+কাপ্তাই|জ্যোতিষ্ময় চাকমা|ওয়াগ্গা হেডঃপাড়া স: প্রা: বিদ্যা:|01828720651
+কাপ্তাই|জগদীশ চন্দ্র দাশ|বড়ইছড়ি স: প্রা: বিদ্যা:|01817775705
+কাপ্তাই|আবু বকর সিদ্দিক|শিলছড়ি স: প্রা: বিদ্যা:|01818251898
+কাপ্তাই|সুচন্দা প্রভা তঞ্চঙ্গ্যা|বারঘোনিয়া স: প্রা: বিদ্যা:|01820320023
+কাপ্তাই|শ্যামল কান্তি দে|বারঘোনিয়া মুখ স: প্রা: বিদ্যা:|01872466927
+কাপ্তাই|নাজমা বেগম|বি এম স: প্রা: বিদ্যা:|01818349503
+কাপ্তাই|নাছরিন সুলতানা|ডংনালা স: প্রা: বিদ্যা:|01727659652
+কাপ্তাই|সুই অং প্রু মারমা|পূর্ব কোদালা স: প্রা: বিদ্যা:|01740921688
+কাপ্তাই|রুবি দাশ গুপ্তা|খন্তা কাটা স: প্রা: বিদ্যা:|01820425774
+কাপ্তাই|¤্রাসুইউ মারমা|রাইখালী স: প্রা: বিদ্যা:|01821535932
+কাপ্তাই|উনুমি মারমা|কারিগড় পাড়া স: প্রা: বিদ্যা:|01872469006
+কাপ্তাই|সাহ্লা প্রু মারমা|গবছড়া স: প্রা: বিদ্যা:|01831867325
+কাপ্তাই|সিদ্ধার্থ কুমার তঞ্চঙ্গ্যা|নারাছড়া স: প্রা: বিদ্যা:|01828867507
+কাপ্তাই|পুথুইচিং মারমা|নারানগিড়ি বড়পাড়া স: প্রা: বিদ্যা:|01824839676
+কাপ্তাই|আতাউর রশীদ|পানছড়ি স: প্রা: বিদ্যা:|01820208720
+কাপ্তাই|জসিম উদ্দিন|তিনছড়ি স: প্রা: বিদ্যা:|01843218867
+কাপ্তাই|জয়মোহন তঞ্চঙ্গ্যা|ভাল্লুকিয়া স: প্রা: বিদ্যা:|01821535366
+কাপ্তাই|মাহবুবে এলাহী|কালামাইশ্যা স: প্রা: বিদ্যা:|01632608351
+কাপ্তাই|সাজাইপ্রু মারমা|কালামাইশ্যামুখ স: প্রা: বিদ্যা:|01837241979
+কাপ্তাই|আয়েশা আক্তার|হাপছড়ি স: প্রা: বিদ্যা:|01829477750
+কাপ্তাই|মোঃ মঈনুল হোসেন|নারানগিড়ি স: প্রা: বিদ্যা:|01824939297
+কাপ্তাই|জবা তঞ্চঙ্গ্যা|ডলুছড়ি স: প্রা: বিদ্যা:|01835819539
+কাপ্তাই|তপন কান্তি দে|রাইখালী রিফিউঃ স: প্রা: বিদ্যা:|01816117920
+কাপ্তাই|রতন চন্দ্র দাশ|রাইখালী জুমিয়া স: প্রা: বিদ্যা:|01818083255
+কাপ্তাই|হ্লাথোয়াই খই মারমা|চিৎমরম ইসঃ স: প্রা: বিদ্যা:|01812997870
+কাপ্তাই|মংসুইছাইন মারমা|চিৎমরম স: প্রা: বিদ্যা:|01818869601
+কাপ্তাই|ক্রাথুইচিং মারমা|চাকুয়া পাড়া স: প্রা: বিদ্যা:|01860804784
+কাপ্তাই|চন্দ্রসেন তঞ্চঙ্গ্যা|পেকুয়া স: প্রা: বিদ্যা:|01820304543
+কাপ্তাই|মোঃ ইউসুফ মিয়া|বিএফআইডিসি মডেল স: প্রা: বিদ্যা:|01817257009
+কাপ্তাই|রুবি আক্তার|চৌধুরীছড়া স: প্রা: বিদ্যা:|01811910575
+কাপ্তাই|মোঃ নাজমুল হাছান|ফুলবাগান স: প্রা: বিদ্যা:|01818358789
+কাপ্তাই|মোঃ আবুল কালাম|নিউমার্কেট স: প্রা: বিদ্যা:|01812416594
+কাপ্তাই|মমতাজ বেগম|ব্রিকফিল্ড স: প্রা: বিদ্যা:|01825376675
+কাপ্তাই|ফেরদৌস আক্তার|হরিনছড়া মুখ স: প্রা: বিদ্যা:|01618772002
+কাপ্তাই|লিটন চন্দ্র দেব|হরিনছড়া স: প্রা: বিদ্যা:|01818574614
+কাপ্তাই|মনিরুজ্জামান|চংড়াছড়ি আবাঃ স: প্রা: বিদ্যা:|01813076922
+কাপ্তাই|সাচিংনু মারমা|মইদং পাড়া স: প্রা: বিদ্যা:|01553604193
+কাপ্তাই|জ্ঞানোদয় তঞ্চঙ্গ্যা|ছোট পাগলী স: প্রা: বিদ্যা:|01811917643
+কাপ্তাই|আহসান উল্যাহ|ব্যাংছড়ি স: প্রা: বিদ্যা:|01821371670
+কাপ্তাই|ঈসাইনু মারমা|তম্বপাড়া স: প্রা: বিদ্যা:|01859355456
+কাপ্তাই|নীলু কুমার তঞ্চঙ্গ্যা|মিরিছড়া স: প্রা: বিদ্যা:|01837684003
+কাপ্তাই|কুসুমিকা তঞ্চঙ্গ্যা|আগুনিয়া ছড়া স: প্রা: বিদ্যা:|01825112377
+কাপ্তাই|দেবানন্দ বড়–য়া|নুনছড়ি স: প্রা: বিদ্যা:|01822866410
+কাপ্তাই|মিনুচিং মারমা|ওয়াব্রাই পাড়া স: প্রা: বিদ্যা:|01821783599
+কাপ্তাই|মিসেস মুন্না দে|পশ্চিম কোদালা স: প্রা: বিদ্যা:|01811917643
+কাপ্তাই|কামরুল হক আজাদ|কে আর সি স: প্রা: বিদ্যা:|01872242778
+কাপ্তাই|মাঞাউ মারমা|তিনছড়ি জুমিয়া পূর্নবাসন|01827794108
+কাপ্তাই|প্রীতিময় চাকমা|পরিমল চন্দ্র তালুকদার স: প্রা: বিদ্যা:|01820347182
+কাপ্তাই|হীরা লাল চাকমা|আড়াছড়ি স: প্রা: বিদ্যা:|01759808355
+রাজস্থলী|মোঃ ইউসুফ আলী (চ.দা)|রাজস্থলী বাজার মডেল স: প্রা: বিদ্যা:|01556709278
+রাজস্থলী|অংথোয়াইচিং মারমা|শীলছড়ি স: প্রা: বিদ্যা:|01553638790
+রাজস্থলী|সুনন্দ কুমার তঞ্চঙ্গ্যা(ভারপ্রাপ্ত)|নাড়াইছড়ি স: প্রা: বিদ্যা:|01553766088
+রাজস্থলী|উথোয়াইচিং মারমা(ভারপ্রাপ্ত)|গাইন্দ্যা স: প্রা: বিদ্যা:|01553685787
+রাজস্থলী|মিনু চৌধুরী(ভারপ্রাপ্ত)|তাইতং পাড়া স: প্রা: বিদ্যা:|01553621699
+রাজস্থলী|নুচিংমং মারমা(ভারপ্রাপ্ত)|চিংখ্যং স: প্রা: বিদ্যা:|01553239886
+রাজস্থলী|বিপিন বড়–য়া(চ.দা)|চুশাক পাড়া সপাবি|01835667349
+রাজস্থলী|ক্যউমং মারমা|কমলছড়ি স: প্রা: বিদ্যা:|01824778212
+রাজস্থলী|ইওয়াইচিং মারমা|পোয়াইতু তরগুছড়া স: প্রা: বিদ্যা:|01554226916
+রাজস্থলী|অনুশ্রী দেওয়ান|ইয়ংম্রং পাড়া স: প্রা: বিদ্যা:|01824778466
+রাজস্থলী|শাহানাজ বেগম(চ.দা)|হাজী পাড়া স: প্রা: বিদ্যা:|01559318080
+রাজস্থলী|সুরেশ কুমার তঞ্চঙ্গ্যা|ছাইংখ্যং স: প্রা: বিদ্যা:|01553262029
+রাজস্থলী|ছায়ক কুমার তঞ্চঙ্গ্যা(চ.দা)|লংগদু পাড়া স: প্রা: বিদ্যা:|01863766390
+রাজস্থলী|মাথুইচিং মারমা(ভারপ্রাপ্ত)|বাঙ্গালহালিয়া স: প্রা: বিদ্যা:|01834611601
+রাজস্থলী|উক্যচিং মারমা(চ.দা)|নাইক্যছড়া স: প্রা: বিদ্যা:|01834791647
+রাজস্থলী|চিংসানু মারমা|কাকড়াছড়ি স: প্রা: বিদ্যা:|01856834411
+রাজস্থলী|চিংনুপ্রু মারমা|ধলিয়া নোয়াপাড়া স: প্রা: বিদ্যা:|01834570680
+রাজস্থলী|এস,এম,আশরাফ হোসেন|শফিপুর স: প্রা: বিদ্যা:|01553794678
+রাজস্থলী|সুইচিংহ্লা মারমা|ইসলামপুর স: প্রা: বিদ্যা:|01553103074
+রাজস্থলী|মু: আবু বকর তালুকদার|হাজী পাড়া স: প্রা: বিদ্যা:|01823522471
+রাজস্থলী|থুইমাচিং মারমা(চ.দা)|কুটুরিয়া পাড়া স: প্রা: বিদ্যা:|01557019178
+রাজস্থলী|পাইথুইঅং খিয়াং|কুক্যাছড়ি স: প্রা: বিদ্যা:|01553644590
+রাজস্থলী|রাঙ্গাচান তঞ্চঙ্গ্যা(ভারপ্রাপ্ত)|ম্রংওয়া পাড়া স: প্রা: বিদ্যা:|01553651972
+রাজস্থলী|সুরতধন তঞ্চঙ্গ্যা|কাপ্তাই যৌথখামার স: প্রা: বিদ্যা:|01843573383
+রাজস্থলী|বিচন্দ্র ত্রিপুরা(ভারপ্রাপ্ত)|বলি পাড়া স: প্রা: বিদ্যা:|01868864457
+রাজস্থলী|জ্যোতির্ময় ভট্টাচার্য্য(চ.দা)|বালুমুড়া স: প্রা: বিদ্যা:|01840279192
+রাজস্থলী|মংশৈপ্রু চৌধুরী(ভারপ্রাপ্ত)|বাঙ্গালহালিয়া যৌথখামার স: প্রা: বিদ্যা:|01821497391
+রাজস্থলী|দিবাকর তঞ্চঙ্গ্যা(ভারপ্রাপ্ত)|তালুকদার পাড়া স: প্রা: বিদ্যা:|01558170878
+রাজস্থলী|অংসুইনু মারমা(ভারপ্রাপ্ত)|ছাগলখাইয়া স: প্রা: বিদ্যা:|01553119518
+রাজস্থলী|তনু কুমার তঞ্চঙ্গ্যা(চ.দা)|পাইন্দ তরগুপাড়া স: প্রা: বিদ্যা:|01556740659
+রাজস্থলী|শিল্পী চাকমা(চ.দা)|পোয়াইতু পূনর্বাসন স: প্রা: বিদ্যা:|01553112546
+রাজস্থলী|মংসাচিং মারমা(ভারপ্রাপ্ত)|ধলিয়া মুসলিমপাড়া স: প্রা: বিদ্যা:|01830928118
+রাজস্থলী|আথোয়াইমং মারমা(ভারপ্রাপ্ত)|ডাকবাংলা পাড়া স: প্রা: বিদ্যা:|01553119521
+রাজস্থলী|মংসাহ্লা মারমা|পাবনাটিলা স: প্রা: বিদ্যা:|01553006252
+রাজস্থলী|কাঞ্চনমালা তঞ্চঙ্গ্যা (চ.দা)|চেয়ারম্যানটিলা স: প্রা: বিদ্যা:|01553112564
+রাজস্থলী|রুমা আক্তার(চ.দা)|বালুমুড়া মুসলিমপাড়া স: প্রা: বিদ্যা:|01829574998
+রাজস্থলী|জ্যোৎস্নারা বেগম(চ.দা)|আমছড়াপাড়া স: প্রা: বিদ্যা:|01553644606
+রাজস্থলী|চঞোয়াইপ্রু মারমা (চ.দা)|তরগু-ক্যংম্রং স: প্রা: বিদ্যা:|01553203979
+রাজস্থলী|মংচিংথোয়াই মারমা(ভারপ্রাপ্ত)|তবংশে পাড়া স: প্রা: বিদ্যা:|01836780143
+রাজস্থলী|চন্দ্র কুমার তঞ্চঙ্গ্যা|ছাবোছড়া ভাতখাইয়াপাড়া স: প্রা: বিদ্যা:|01554989649
+রাজস্থলী|প্রীতিময় তালুকদার(ভারপ্রাপ্ত)|শীলছড়ি নোয়াপাড়া স: প্রা: বিদ্যা:|01553107887
+রাজস্থলী|লুকাস খিয়াং(ভারপ্রাপ্ত)|আড়াছড়ি হেডম্যানপাড়া স: প্রা: বিদ্যা:|01850565959
+রাজস্থলী|টিপু খিয়াং(ভারপ্রাপ্ত)|জিংম্রং-গূনম্রংপাড়া স: প্রা: বিদ্যা:|01811013453
+রাজস্থলী|দেনেব দেওয়ান(ভারপ্রাপ্ত)|ধনুছড়ি পাড়া স: প্রা: বিদ্যা:|01875293446
+রাজস্থলী|জগদীশ তঞ্চঙ্গ্যা(ভারপ্রাপ্ত)|বগাছড়িপাড়া স: প্রা: বিদ্যা:|01556823866
+রাজস্থলী|বিদ্যালয় বন্ধ|গাইন্দ্যা নোয়াপাড়া স: প্রা: বিদ্যা:|0
+রাজস্থলী|অঞ্জন খিয়াং(ভারপ্রাপ্ত)|রোয়াসে পাড়া স: প্রা: বিদ্যা:|01855511198
+রাজস্থলী|শ্যামল বিশ্বাস(ভারপ্রাপ্ত)|খ্যাংদং পাড়া স: প্রা: বিদ্যা:|01876303661
+রাজস্থলী|টুমকী ভট্টাচার্য্য(ভারপ্রাপ্ত)|বুইবাইন্দং পাড়া স: প্রা: বিদ্যা:|01817249109
+রাজস্থলী|রাঙ্গা কুমার তঞ্চঙ্গ্যা(ভারপ্রাপ্ত)|মাগাইন পাড়া স: প্রা: বিদ্যা:|01878206599
+রাজস্থলী|প্রীতিরানী তঞ্চঙ্গ্যা(ভারপ্রাপ্ত)|খোরাইম্রং পাড়া স: প্রা: বিদ্যা:|01553641326
+রাজস্থলী|সাচিং খিয়াং|বড়পাড়া স: প্রা: বিদ্যা:|01552508008
+রাজস্থলী|ভারতমনি ত্রিপুরা(ভারপ্রাপ্ত)|দোছড়ি পাড়া স: প্রা: বিদ্যা:|01591198408
+বিলাইছড়ি|ইয়াসমিন বেগম|বিলাইছড়ি বাজার মডেল স: প্রা: বিদ্যা:|01553132326
+বিলাইছড়ি|জ্ঞানেন্দু বিকাশ চাকমা (চ: দা:)|দীঘলছড়ি স: প্রা: বিদ্যা:|01553412505
+বিলাইছড়ি|পুতুল চন্দ্র তঞ্চঙ্গ্যা|কুতুবদিয়া স: প্রা: বিদ্যা:|01557394210
+বিলাইছড়ি|জ্যোতির্ময় তঞ্চঙ্গ্যা|বল্লালছড়া স: প্রা: বিদ্যা:|01553685971
+বিলাইছড়ি|লুসি এলিজাবেথ পাংখোয়া (ভারপ্রাপ্ত)|পাংখু পাড়া স: প্রা: বিদ্যা:|01866697701
+বিলাইছড়ি|রঞ্জন তঞ্চঙ্গ্যা|সাক্রাছড়ি স: প্রা: বিদ্যা:|01557834006
+বিলাইছড়ি|সুখ কুমার তঞ্চঙ্গ্যা (চ: দা:)|ধূপশিল স: প্রা: বিদ্যা:|01556707091
+বিলাইছড়ি|মঞ্জুর কাদের|কেংড়াছড়ি স: প্রা: বিদ্যা:|01585356699
+বিলাইছড়ি|সুদেব কুমার দাশ|কেংড়াছড়ি জোন স: প্রা: বিদ্যা:|01585358822
+বিলাইছড়ি|রূপসী বিশ্বাস|কেরনছড়ি স: প্রা: বিদ্যা:|01553132325
+বিলাইছড়ি|বিশ্বজিৎ তঞ্চঙ্গ্যা|শহীদ হাবিব স: প্রা: বিদ্যা:|01553130578
+বিলাইছড়ি|সুপ্রভাতী চাকমা (চ: দা:)|মেরাংছড়া স: প্রা: বিদ্যা:|01552607162
+বিলাইছড়ি|নিপ্পন বিকাশ চাকমা (চ: দা:)|নাড়াইছড়ি স: প্রা: বিদ্যা:|1552631290
+বিলাইছড়ি|প্রীতিময় চাকমা|হিজাছড়ি ঢেবাছড়ি স: প্রা: বিদ্যা:|01553790478
+বিলাইছড়ি|প্রীতিময় চাকমা-২ (চ: দা:)|কৌশল্যাঘোনা স: প্রা: বিদ্যা:|01557325923
+বিলাইছড়ি|অরুন তঞ্চঙ্গ্যা|ফারুয়া স: প্রা: বিদ্যা:|01553761319
+বিলাইছড়ি|রামদৌ পাংখোয়া(চ:দা:)|ওড়াছড়ি স: প্রা: বিদ্যা:|01557427878
+বিলাইছড়ি|উথোয়াইন মার্মা (চ:দা:)|তক্তানালা স: প্রা: বিদ্যা:|01552729755
+বিলাইছড়ি|শেলী পারিয়াল (ভারপ্রাপ্ত)|বাঙ্গালকাটা স: প্রা: বিদ্যা:|01557185096
+বিলাইছড়ি|পরিতোষ চাকমা (ভারপ্রাপ্ত)|বেগেনাছড়ি স: প্রা: বিদ্যা:|01585358800
+বিলাইছড়ি|সুভাষ চন্দ্র চাকমা (ভারপ্রাপ্ত)|শালবাগান স: প্রা: বিদ্যা:|01557396040
+বিলাইছড়ি|অংসুইহ্লা র্মামা (ভারপ্রাপ্ত)|জান্ডিমোন স: প্রা: বিদ্যা:|01828878706
+বিলাইছড়ি|সুমতি বালা চাকমা (ভারপ্রাপ্ত)|দীঘলছড়িঢেবামাথা স: প্রা: বিদ্যা:|01553008857
+বিলাইছড়ি|সত্য প্রিয় চাকমা (ভারপ্রাপ্ত)|দীঘলছড়ি মোন স: প্রা: বিদ্যা:|01815807593
+বিলাইছড়ি|দিপু চাকমা (ভারপ্রাপ্ত)|তাগলকছড়া স: প্রা: বিদ্যা:|01553763380
+বিলাইছড়ি|দয়াময় চাকমা (ভারপ্রাপ্ত)|নাড়াইছড়ি আগেড়েপাড়া স: প্রা: বিদ্যা:|01867654656
+বিলাইছড়ি|রতন চাকমা (ভারপ্রাপ্ত)|বিলাইছড়ি মোন স: প্রা: বিদ্যা:|01553319106
+বিলাইছড়ি|বটতল মোন (ভারপ্রাপ্ত)|বটতলী মোন স: প্রা: বিদ্যা:|01553110722
+বিলাইছড়ি|ইতালী চাকমা (ভারপ্রাপ্ত)|গো-ছড়া স: প্রা: বিদ্যা:|01556702773
+বিলাইছড়ি|সোনাজিত চাকমা (ভারপ্রাপ্ত)|পো-ছড়া স: প্রা: বিদ্যা:|01820325393
+বিলাইছড়ি|আনুসিং মারমা (ভারপ্রাপ্ত)|রোয়াপাড়াছড়া স: প্রা: বিদ্যা:|01557185096
+বিলাইছড়ি|অরুন কুমার তনচংগ্যা (ভারপ্রাপ্ত)|জামুছড়া স: প্রা: বিদ্যা:|01585358800
+বিলাইছড়ি|দেবেশ চাকমা (ভারপ্রাপ্ত)|লতাপাহাড় স: প্রা: বিদ্যা:|01552729755
+বিলাইছড়ি|কিশোরময় চাকমা (ভারপ্রাপ্ত)|শুক্কুরছড়ি স: প্রা: বিদ্যা:|01557185096
+বিলাইছড়ি|রিকি চাকমা (ভারপ্রাপ্ত)|তাংখোইতাং স: প্রা: বিদ্যা:|01820350796
+বিলাইছড়ি|জবা দেওয়ান (ভারপ্রাপ্ত)|আমকাটাছড়া স: প্রা: বিদ্যা:|01552809084
+বিলাইছড়ি|সুজীতি জীবন চাকমা (ভারপ্রাপ্ত)|সাংড়াছড়ি স: প্রা: বিদ্যা:|01825640049
+বিলাইছড়ি|সুগন্ধিকুমার তঞ্চঙ্গ্যা (ভারপ্রাপ্ত)|ছাবাতলী স: প্রা: বিদ্যা:|01554651793
+বিলাইছড়ি|শংকর বিজয় চাকমা (ভারপ্রাপ্ত)|পশ্চিম মন্দিরাছড়া স: প্রা: বিদ্যা:|01835624931
+বিলাইছড়ি|বিবর্তন চাকমা (ভারপ্রাপ্ত)|পূর্ব মন্দিরাছড়া স: প্রা: বিদ্যা:|01559361976
+বিলাইছড়ি|নবরতœ চাকমা (ভারপ্রাপ্ত)|গাছকাবাছড়া স: প্রা: বিদ্যা:|01556700460
+বিলাইছড়ি|শরনসিং তালুকদার (ভারপ্রাপ্ত)|পেত্যাছড়ি স: প্রা: বিদ্যা:|01554175774
+বিলাইছড়ি|রিটন চাকমা (ভারপ্রাপ্ত)|পানছড়ি স: প্রা: বিদ্যা:|01556776755`;
+
+/* Fix a broken line — some rows got mixed. Rebuild robustly: */
+const SCHOOLS = RAW.trim().split('\n').filter(l=>l.trim() && l.split('|').length===4).map((line,i)=>{
+  const [u,t,n,m]=line.split('|');
+  return {id:i+1,upazila:(u||'').trim(),teacher:(t||'').trim(),name:(n||'').trim(),mobile:(m||'').trim()};
+});
+const UPAZILAS = [...new Set(SCHOOLS.map(s=>s.upazila))].sort();
+
+/* ==================== IndexedDB ==================== */
+let _db=null;
+function openDB(){return new Promise((res,rej)=>{if(_db)return res(_db);const r=indexedDB.open('rangamati_v2',1);r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('entries'))db.createObjectStore('entries',{keyPath:'id'});if(!db.objectStoreNames.contains('media'))db.createObjectStore('media',{keyPath:'id'});};r.onsuccess=()=>{_db=r.result;res(_db)};r.onerror=()=>rej(r.error)})}
+async function dbPut(s,v){const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction(s,'readwrite');tx.objectStore(s).put(v);tx.oncomplete=()=>res(true);tx.onerror=()=>rej(tx.error)})}
+async function dbDel(s,k){const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction(s,'readwrite');tx.objectStore(s).delete(k);tx.oncomplete=()=>res(true);tx.onerror=()=>rej(tx.error)})}
+async function dbAll(s){const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction(s,'readonly');const rq=tx.objectStore(s).getAll();rq.onsuccess=()=>res(rq.result||[]);rq.onerror=()=>rej(rq.error)})}
+async function dbClear(s){const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction(s,'readwrite');tx.objectStore(s).clear();tx.oncomplete=()=>res(true);tx.onerror=()=>rej(tx.error)})}
+
+/* ==================== State ==================== */
+const state={
+  entries:[],media:[],
+  currentSchoolId:null,currentPTab:'interviews',
+  schoolUpazila:'',
+  schoolShown:30,
+  fabPos:{x:null,y:null},
+  panelPos:{x:null,y:null},
+  panelMinimized:false,
+  rec:null
+};
+function bn(n){return String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d])}
+function fmtSize(b){if(b<1024)return b+' B';if(b<1048576)return (b/1024).toFixed(1)+' KB';return (b/1048576).toFixed(2)+' MB'}
+function fmtTime(ms){const s=Math.floor(ms/1000);const m=Math.floor(s/60);const ss=s%60;return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0')}
+function inDateRange(ds,range){if(!range)return true;if(!ds)return false;const d=new Date(ds);const now=new Date();const diff=(now-d)/86400000;if(range==='today')return ds===now.toISOString().slice(0,10);if(range==='week')return diff<=7;if(range==='month')return diff<=30;return true}
+function schoolById(id){return SCHOOLS.find(x=>x.id===parseInt(id,10))}
+
+/* ==================== Navigation ==================== */
+function show(v){
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
+  const el=document.getElementById('view-'+v);
+  if(el)el.classList.add('active');
+  document.querySelectorAll('.bnav button').forEach(b=>b.classList.toggle('on',b.dataset.view===v));
+  window.scrollTo({top:0,behavior:'instant'});
+  if(v==='home')renderHome();
+  if(v==='schools')renderSchools();
+  if(v==='collect')renderCollectView();
+  if(v==='media')renderMediaHub();
+  if(v==='report')renderReport();
+  if(v==='more')renderStorageInfo();
+}
+function jumpToSchools(){show('schools')}
+
+/* ==================== HOME ==================== */
+async function renderHome(){
+  await refreshData();
+  const vac=SCHOOLS.filter(s=>/ভারপ্রাপ্ত|ভার:|চলতি|চ: ?দা/.test(s.teacher)).length;
+  document.getElementById('stSchools').textContent=bn(SCHOOLS.length);
+  document.getElementById('stVac').textContent=bn(vac);
+  document.getElementById('stEntries').textContent=bn(state.entries.length);
+  document.getElementById('stMedia').textContent=bn(state.media.length);
+
+  const schoolWithData=new Set(state.entries.map(e=>e.schoolId));
+  const map={};
+  SCHOOLS.forEach(s=>{map[s.upazila]=map[s.upazila]||{total:0,withData:0}});
+  SCHOOLS.forEach(s=>{map[s.upazila].total++;if(schoolWithData.has(s.id))map[s.upazila].withData++});
+  const sorted=Object.entries(map).sort((a,b)=>b[1].total-a[1].total);
+  const max=sorted[0]?sorted[0][1].total:1;
+  document.getElementById('upazilaBars').innerHTML=sorted.map(([k,v])=>`
+    <div style="cursor:pointer;padding:5px 0" onclick="selectUpazila('${k}')">
+      <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+        <span style="font-weight:600;color:var(--navy)">${k}</span>
+        <span style="color:var(--ink3);font-size:11.5px">${bn(v.withData)}/${bn(v.total)}</span>
+      </div>
+      <div style="background:var(--line2);border-radius:6px;height:7px;overflow:hidden;position:relative">
+        <div style="background:var(--line);height:100%;width:${Math.round(v.total/max*100)}%;position:absolute;left:0"></div>
+        <div style="background:linear-gradient(90deg,var(--green),var(--navy2));height:100%;width:${Math.round(v.withData/max*100)}%;position:absolute;left:0"></div>
+      </div>
+    </div>`).join('');
+
+  const recent=[...state.entries].sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).slice(0,5);
+  document.getElementById('recentActivity').innerHTML=recent.length?recent.map(e=>{
+    const s=schoolById(e.schoolId);
+    return `<div style="padding:10px 0;border-bottom:1px solid var(--line2);cursor:pointer" onclick="openProfile(${e.schoolId})">
+      <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:2px">${s?s.name:'?'}</div>
+      <div style="font-size:11.5px;color:var(--ink3)">${e.type} • ${e.person||''} • ${e.date||''}</div>
+    </div>`;
+  }).join(''):`<div style="font-size:13px;color:var(--ink3);padding:8px;text-align:center">এখনো কিছু সংগ্রহ হয়নি</div>`;
+}
+async function refreshData(){state.entries=await dbAll('entries');state.media=await dbAll('media')}
+
+/* ==================== SCHOOLS LIST ==================== */
+function selectUpazila(u){
+  state.schoolUpazila=u;
+  document.getElementById('f-upazila').value=u;
+  state.schoolShown=30;
+  show('schools');
+}
+function resetSchoolFilters(){
+  state.schoolUpazila='';
+  state.schoolShown=30;
+  document.getElementById('f-upazila').value='';
+  document.getElementById('f-search').value='';
+  document.getElementById('f-coverage').value='';
+  document.getElementById('f-status').value='';
+  renderSchools();
+}
+function getFilteredSchools(){
+  const q=(document.getElementById('f-search').value||'').toLowerCase().trim();
+  const up=state.schoolUpazila;
+  const cov=document.getElementById('f-coverage').value;
+  const st=document.getElementById('f-status').value;
+  const withData=new Set(state.entries.map(e=>e.schoolId));
+  const withMedia=new Set(state.media.map(m=>m.schoolId));
+  const withAudio=new Set(state.media.filter(m=>m.type==='audio').map(m=>m.schoolId));
+  const withPhoto=new Set(state.media.filter(m=>m.type==='photo').map(m=>m.schoolId));
+  return SCHOOLS.filter(s=>{
+    if(up && s.upazila!==up)return false;
+    if(q && !(s.name.toLowerCase().includes(q)||s.teacher.toLowerCase().includes(q)||s.mobile.includes(q)))return false;
+    if(st==='acting' && !/ভারপ্রাপ্ত|ভার:|চলতি|চ: ?দা/.test(s.teacher))return false;
+    if(st==='closed' && s.mobile!=='0')return false;
+    if(cov==='any' && !withData.has(s.id))return false;
+    if(cov==='nodem' && withData.has(s.id))return false;
+    if(cov==='audio' && !withAudio.has(s.id))return false;
+    if(cov==='photo' && !withPhoto.has(s.id))return false;
+    return true;
+  });
+}
+function renderSchools(){
+  const list=getFilteredSchools();
+  const visible=list.slice(0,state.schoolShown);
+  const el=document.getElementById('schoolList');
+  const withData=new Set(state.entries.map(e=>e.schoolId));
+  const withMedia=new Set(state.media.map(m=>m.schoolId));
+
+  // summary
+  const summary=document.getElementById('filterSummary');
+  const up=state.schoolUpazila;
+  summary.textContent=up?`${up} উপজেলার বিদ্যালয়`:'সব উপজেলার বিদ্যালয়';
+  document.getElementById('schoolCount').textContent=`${bn(list.length)}টি`;
+
+  if(!list.length){
+    el.innerHTML=`<div class="empty"><div class="big">🔍</div><div class="msg">কোনো বিদ্যালয় পাওয়া যায়নি</div></div>`;
+    return;
+  }
+  // SERIAL NUMBERS: within filtered result
+  el.innerHTML=visible.map((s,idx)=>{
+    const isActing=/ভারপ্রাপ্ত|ভার:|চলতি|চ: ?দা/.test(s.teacher);
+    const isClosed=s.mobile==='0';
+    const hasData=withData.has(s.id);
+    const hasMedia=withMedia.has(s.id);
+    const badges=[];
+    if(isClosed)badges.push('<span class="badge vac">বন্ধ</span>');
+    else if(isActing)badges.push('<span class="badge acting">ভারপ্রাপ্ত</span>');
+    if(hasData)badges.push('<span class="badge data">ডেটা</span>');
+    if(hasMedia)badges.push('<span class="badge media">মিডিয়া</span>');
+    return `<div class="school-item" onclick="openProfile(${s.id})">
+      <div class="serial">${bn(idx+1)}</div>
+      <div class="name">${s.name}</div>
+      <div class="teacher">👤 ${s.teacher}</div>
+      <div class="row2">
+        <span>📍 ${s.upazila}</span>
+        ${s.mobile&&s.mobile!=='0'?`<a href="tel:${s.mobile}" onclick="event.stopPropagation()">📞 ${s.mobile}</a>`:''}
+      </div>
+      ${badges.length?`<div class="badges">${badges.join('')}</div>`:''}
+    </div>`;
+  }).join('');
+  if(visible.length<list.length){
+    el.insertAdjacentHTML('beforeend',`<button class="load-more" onclick="state.schoolShown+=30;renderSchools()">আরও ${bn(Math.min(30,list.length-visible.length))}টি দেখুন</button>`);
+  }
+}
+
+/* ==================== PROFILE ==================== */
+async function openProfile(id){
+  state.currentSchoolId=parseInt(id,10);
+  state.currentPTab='interviews';
+  const s=schoolById(id);
+  document.getElementById('pName').textContent=s.name;
+  document.getElementById('pTeacher').textContent='👤 '+s.teacher;
+  document.getElementById('pMeta').textContent='📍 '+s.upazila+' উপজেলা'+(s.mobile&&s.mobile!=='0'?' • 📞 '+s.mobile:'');
+  show('profile');
+  renderProfile();
+}
+async function renderProfile(){
+  await refreshData();
+  const id=state.currentSchoolId;
+  const entries=state.entries.filter(e=>e.schoolId===id);
+  const media=state.media.filter(m=>m.schoolId===id);
+  const audio=media.filter(m=>m.type==='audio');
+  const photos=media.filter(m=>m.type==='photo');
+  const notes=entries.filter(e=>e.type==='নোট');
+  document.getElementById('pEntries').textContent=bn(entries.filter(e=>e.type!=='নোট').length);
+  document.getElementById('pAudio').textContent=bn(audio.length);
+  document.getElementById('pPhotos').textContent=bn(photos.length);
+  document.getElementById('pNotes').textContent=bn(notes.length);
+  document.querySelectorAll('.ptabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===state.currentPTab));
+  const cont=document.getElementById('ptabContent');
+  if(state.currentPTab==='interviews'){
+    const list=entries.filter(e=>e.type!=='নোট');
+    if(!list.length)cont.innerHTML=`<div class="empty" style="padding:24px"><div class="big">📝</div><div class="msg">এখনো সাক্ষাৎকার নেই</div><button class="btn btn-primary" style="margin-top:12px" onclick="addInterviewForSchool()">+ সাক্ষাৎকার</button></div>`;
+    else cont.innerHTML=list.map(e=>renderEntryCard(e,false)).join('');
+  } else if(state.currentPTab==='audio'){
+    if(!audio.length)cont.innerHTML=`<div class="empty" style="padding:24px"><div class="big">🎤</div><div class="msg">কোনো অডিও নেই</div><button class="btn btn-primary" style="margin-top:12px" onclick="startRecordingForCurrent()">🎤 রেকর্ড</button></div>`;
+    else cont.innerHTML=audio.map(m=>renderAudioCard(m,false)).join('');
+  } else if(state.currentPTab==='photos'){
+    if(!photos.length)cont.innerHTML=`<div class="empty" style="padding:24px"><div class="big">📷</div><div class="msg">কোনো ছবি নেই</div><button class="btn btn-primary" style="margin-top:12px" onclick="quickPhoto()">📷 ছবি তুলুন</button></div>`;
+    else cont.innerHTML=`<div class="photo-grid">${photos.map(p=>`<div class="ph"><img src="${p.dataUrl}" onclick="viewPhoto('${p.id}')"><button class="del" onclick="event.stopPropagation();deleteMedia('${p.id}')">✕</button></div>`).join('')}</div>`;
+  } else if(state.currentPTab==='notes'){
+    if(!notes.length)cont.innerHTML=`<div class="empty" style="padding:24px"><div class="big">📒</div><div class="msg">কোনো নোট নেই</div><button class="btn btn-primary" style="margin-top:12px" onclick="addNoteForSchool()">📒 নোট যোগ</button></div>`;
+    else cont.innerHTML=notes.map(e=>renderEntryCard(e,false)).join('');
+  }
+}
+function switchPTab(t){state.currentPTab=t;renderProfile()}
+function renderEntryCard(e,showSchool=true){
+  const s=schoolById(e.schoolId);
+  return `<div class="entry">
+    <div class="entry-head">
+      <div class="entry-ttl">${e.type}${e.person?' — '+e.person:''}</div>
+      <button class="entry-del" onclick="deleteEntry('${e.id}')">✕</button>
+    </div>
+    <div class="entry-meta">
+      ${e.date?`<span>📅 ${e.date}</span>`:''}
+      ${e.post?`<span>${e.post}</span>`:''}
+      ${e.mobile?`<span>📞 ${e.mobile}</span>`:''}
+    </div>
+    ${showSchool&&s?`<div class="entry-meta"><span class="entry-school" onclick="openProfile(${s.id})">🏫 ${s.name}</span></div>`:''}
+    <div class="entry-body">${(e.body||'').slice(0,300)}${(e.body||'').length>300?'...':''}</div>
+    ${e.numbers?`<div class="entry-num">📊 ${e.numbers}</div>`:''}
+    ${(e.tags||[]).length?`<div class="entry-tags">${e.tags.map(t=>`<span class="tag">#${t}</span>`).join('')}</div>`:''}
+  </div>`;
+}
+function renderAudioCard(m,showSchool=true){
+  const s=schoolById(m.schoolId);
+  return `<div class="audio-item">
+    <div class="row">
+      <div style="flex:1;min-width:0">
+        <div class="title">🎤 ${m.title||'অডিও'}</div>
+        <div class="meta">${m.date||''}${m.duration?' • '+fmtTime(m.duration):''}${m.person?' • '+m.person:''}</div>
+      </div>
+      <button class="entry-del" onclick="deleteMedia('${m.id}')">✕</button>
+    </div>
+    ${showSchool&&s?`<div class="meta" style="margin-bottom:6px"><span class="entry-school" onclick="openProfile(${s.id})">🏫 ${s.name}</span></div>`:''}
+    <audio controls preload="metadata" src="${m.dataUrl}"></audio>
+    <div class="size">${fmtSize(m.size||0)}</div>
+  </div>`;
+}
+function viewPhoto(id){
+  const p=state.media.find(x=>x.id===id);if(!p)return;
+  const s=schoolById(p.schoolId);
+  document.getElementById('modalBody').innerHTML=`
+    <h3 class="modal-title">${p.title||'ছবি'}</h3>
+    <div class="modal-sub">${p.date||''}${s?' • '+s.name:''}</div>
+    <img src="${p.dataUrl}" style="width:100%;border-radius:12px">
+  `;
+  document.getElementById('modal').classList.add('show');
+}
+async function deleteEntry(id){if(!confirm('মুছে ফেলবেন?'))return;await dbDel('entries',id);toast('✓ মুছে ফেলা হয়েছে');renderProfile();renderHome();renderAllEntries()}
+async function deleteMedia(id){if(!confirm('মিডিয়া মুছে ফেলবেন?'))return;await dbDel('media',id);toast('✓ মুছে ফেলা হয়েছে');renderProfile();renderHome();renderMediaHub()}
+
+/* ==================== COLLECT ==================== */
+function renderCollectView(){
+  if(state.currentSchoolId)document.getElementById('c-school').value=state.currentSchoolId;
+  if(!document.getElementById('c-date').value)document.getElementById('c-date').value=new Date().toISOString().slice(0,10);
+  renderAllEntries();
+}
+async function saveInterview(){
+  const schoolId=parseInt(document.getElementById('c-school').value,10);
+  if(!schoolId){toast('বিদ্যালয় নির্বাচন করুন');return}
+  const type=document.getElementById('c-type').value;
+  if(!type){toast('ধরন নির্বাচন করুন');return}
+  const person=document.getElementById('c-person').value.trim();
+  if(!person){toast('নাম দিন');return}
+  const body=document.getElementById('c-body').value.trim();
+  if(!body){toast('বিবরণ লিখুন');return}
+  const tags=(document.getElementById('c-tags').value||'').split(',').map(t=>t.trim()).filter(Boolean);
+  const entry={
+    id:'e_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
+    schoolId,type,person,
+    post:document.getElementById('c-post').value,
+    mobile:document.getElementById('c-mobile').value,
+    date:document.getElementById('c-date').value,
+    body,numbers:document.getElementById('c-numbers').value,tags,
+    createdAt:new Date().toISOString()
+  };
+  await dbPut('entries',entry);
+  toast('✓ সেভ হয়েছে');
+  ['c-type','c-person','c-post','c-mobile','c-body','c-numbers','c-tags'].forEach(id=>document.getElementById(id).value='');
+  await refreshData();
+  openProfile(schoolId);
+}
+function addInterviewForSchool(){
+  document.getElementById('c-school').value=state.currentSchoolId;
+  document.getElementById('c-type').value='সহকারী শিক্ষক';
+  document.getElementById('c-date').value=new Date().toISOString().slice(0,10);
+  show('collect');
+}
+function addNoteForSchool(){
+  document.getElementById('c-school').value=state.currentSchoolId;
+  document.getElementById('c-type').value='নোট';
+  document.getElementById('c-person').value='নোট';
+  document.getElementById('c-date').value=new Date().toISOString().slice(0,10);
+  show('collect');
+}
+async function renderAllEntries(){
+  await refreshData();
+  const q=(document.getElementById('e-search').value||'').toLowerCase().trim();
+  const type=document.getElementById('e-type').value;
+  let list=state.entries.filter(e=>{
+    if(type&&e.type!==type)return false;
+    if(q){
+      const s=schoolById(e.schoolId);
+      const txt=(e.person+' '+e.body+' '+(e.tags||[]).join(' ')+' '+(s?s.name:'')).toLowerCase();
+      if(!txt.includes(q))return false;
+    }
+    return true;
+  }).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+  const el=document.getElementById('allEntriesList');
+  if(!list.length){el.innerHTML=`<div class="empty" style="padding:20px"><div class="msg">কিছু পাওয়া যায়নি</div></div>`;return}
+  el.innerHTML=list.slice(0,50).map(e=>renderEntryCard(e,true)).join('');
+}
+
+/* ==================== MEDIA ==================== */
+function resetMediaFilters(){
+  document.getElementById('m-upazila').value='';
+  document.getElementById('m-type').value='';
+  document.getElementById('m-search').value='';
+  renderMediaHub();
+}
+function renderMediaHub(){
+  const f={
+    type:document.getElementById('m-type').value,
+    upazila:document.getElementById('m-upazila').value,
+    search:(document.getElementById('m-search').value||'').toLowerCase().trim()
+  };
+  let list=state.media.filter(m=>{
+    if(f.type&&m.type!==f.type)return false;
+    const s=schoolById(m.schoolId);
+    if(f.upazila&&(!s||s.upazila!==f.upazila))return false;
+    if(f.search){
+      const txt=((m.title||'')+' '+(m.person||'')+' '+(s?s.name:'')).toLowerCase();
+      if(!txt.includes(f.search))return false;
+    }
+    return true;
+  }).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+  const el=document.getElementById('mediaList');
+  document.getElementById('mediaCount').textContent=`${bn(list.length)}টি`;
+  if(!list.length){el.innerHTML=`<div class="empty"><div class="big">🎬</div><div class="msg">কোনো মিডিয়া নেই</div></div>`;return}
+  const bySchool={};
+  list.forEach(m=>{bySchool[m.schoolId]=bySchool[m.schoolId]||[];bySchool[m.schoolId].push(m)});
+  el.innerHTML=Object.entries(bySchool).map(([sid,items])=>{
+    const s=schoolById(sid);
+    const audios=items.filter(i=>i.type==='audio');
+    const photos=items.filter(i=>i.type==='photo');
+    return `<div class="card">
+      <h3 class="card-title">🏫 <span class="entry-school" onclick="openProfile(${sid})">${s?s.name:'?'}</span> <span style="font-weight:400;font-size:11.5px;color:var(--ink3);margin-left:auto">${bn(items.length)}টি</span></h3>
+      ${audios.map(m=>renderAudioCard(m,false)).join('')}
+      ${photos.length?`<div class="photo-grid">${photos.map(p=>`<div class="ph"><img src="${p.dataUrl}" onclick="viewPhoto('${p.id}')"><button class="del" onclick="event.stopPropagation();deleteMedia('${p.id}')">✕</button></div>`).join('')}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+/* ==================== REPORT ==================== */
+const REPORT_HTML=`
+<h2>সারসংক্ষেপ</h2>
+<p>রাঙামাটি জেলায় <strong>৭০৭টি</strong> সরকারি প্রাথমিক বিদ্যালয়। অনুমোদিত পদের মধ্যে <strong>১,০৭৪+</strong> শূন্য। গত ৩ বছরে <strong>৪ বার</strong> নিয়োগ পরীক্ষা স্থগিত। <strong>৩৮৯টি</strong> স্কুল বিদ্যুৎবিহীন।</p>
+<h2>অ্যাপে সংগৃহীত উপাত্ত</h2>
+<p>উপরের ফিল্টার দিয়ে উপজেলা/ধরন/তারিখ অনুযায়ী সারসংক্ষেপ দেখুন।</p>`;
+function resetReportFilters(){
+  document.getElementById('r-upazila').value='';
+  document.getElementById('r-type').value='';
+  document.getElementById('r-date').value='';
+  renderReport();
+}
+async function renderReport(){
+  document.getElementById('mainReport').innerHTML=REPORT_HTML;
+  await refreshData();
+  const up=document.getElementById('r-upazila').value;
+  const type=document.getElementById('r-type').value;
+  const date=document.getElementById('r-date').value;
+  let entries=state.entries.filter(e=>{
+    if(type&&e.type!==type)return false;
+    if(date&&!inDateRange(e.date,date))return false;
+    const s=schoolById(e.schoolId);
+    if(up&&(!s||s.upazila!==up))return false;
+    return true;
+  });
+  let media=state.media.filter(m=>{
+    if(date&&!inDateRange(m.date,date))return false;
+    const s=schoolById(m.schoolId);
+    if(up&&(!s||s.upazila!==up))return false;
+    return true;
+  });
+  const badges=[];
+  if(up)badges.push(`<span class="tag" style="cursor:pointer" onclick="document.getElementById('r-upazila').value='';renderReport()">📍 ${up} ✕</span>`);
+  if(type)badges.push(`<span class="tag" style="cursor:pointer" onclick="document.getElementById('r-type').value='';renderReport()">🏷️ ${type} ✕</span>`);
+  if(date)badges.push(`<span class="tag" style="cursor:pointer" onclick="document.getElementById('r-date').value='';renderReport()">📅 ✕</span>`);
+  document.getElementById('reportBadges').innerHTML=badges.join(' ');
+
+  const byType={};entries.forEach(e=>{byType[e.type]=(byType[e.type]||0)+1});
+  const byUpazila={};
+  entries.forEach(e=>{const s=schoolById(e.schoolId);if(s)byUpazila[s.upazila]=byUpazila[s.upazila]||{count:0,audio:0,photos:0}});
+  media.forEach(m=>{const s=schoolById(m.schoolId);if(s&&byUpazila[s.upazila]){if(m.type==='audio')byUpazila[s.upazila].audio++;else byUpazila[s.upazila].photos++}});
+  entries.forEach(e=>{const s=schoolById(e.schoolId);if(s&&byUpazila[s.upazila])byUpazila[s.upazila].count++});
+
+  let html=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+      <div style="background:var(--navy-soft);border-radius:10px;padding:12px"><div style="font-size:22px;font-weight:700;color:var(--navy)">${bn(entries.length)}</div><div style="font-size:11px;color:var(--ink3);margin-top:4px">সাক্ষাৎকার</div></div>
+      <div style="background:var(--green-soft);border-radius:10px;padding:12px"><div style="font-size:22px;font-weight:700;color:var(--green)">${bn(media.length)}</div><div style="font-size:11px;color:var(--ink3);margin-top:4px">মিডিয়া</div></div>
+    </div>
+    <h4 style="font-size:13px;color:var(--navy);margin:12px 0 6px">ধরনভিত্তিক</h4><div style="font-size:12.5px;line-height:2">`;
+  if(Object.keys(byType).length){
+    html+=Object.entries(byType).map(([k,v])=>`<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line2);padding:4px 0"><span>${k}</span><strong style="color:var(--navy)">${bn(v)}</strong></div>`).join('');
+  } else html+=`<div style="color:var(--ink3)">কিছু নেই</div>`;
+  html+=`</div><h4 style="font-size:13px;color:var(--navy);margin:16px 0 6px">উপজেলাভিত্তিক</h4><div style="font-size:12.5px;line-height:2">`;
+  if(Object.keys(byUpazila).length){
+    Object.entries(byUpazila).sort((a,b)=>b[1].count-a[1].count).forEach(([k,v])=>{
+      html+=`<div style="border-bottom:1px solid var(--line2);padding:5px 0"><strong>${k}</strong> — ${bn(v.count)} সাক্ষাৎকার • ${bn(v.audio)} অডিও • ${bn(v.photos)} ছবি</div>`;
+    });
+  } else html+=`<div style="color:var(--ink3)">কিছু নেই</div>`;
+  html+=`</div>`;
+  document.getElementById('autoSummary').innerHTML=html;
+}
+
+/* ==================== RECORDER ==================== */
+function handleFabClick(e){
+  if(e && e.target.dataset.dragged) return;
+  if(state.rec && state.rec.active){
+    // panel already showing, minimize toggle
+    const panel=document.getElementById('recPanel');
+    if(panel.classList.contains('show')){
+      if(state.panelMinimized)toggleMinimize();
+      else toggleMinimize();
+    } else {
+      panel.classList.add('show');
+    }
+    return;
+  }
+  if(!state.currentSchoolId){
+    openSchoolPickerForRecord();
+    return;
+  }
+  startRecording();
+}
+function startRecordingForCurrent(){
+  if(!state.currentSchoolId){openSchoolPickerForRecord();return}
+  if(state.rec && state.rec.active){toast('আগে চলতি রেকর্ডিং শেষ করুন');return}
+  startRecording();
+}
+function openSchoolPickerForRecord(){
+  const groups={};SCHOOLS.forEach(s=>{groups[s.upazila]=groups[s.upazila]||[];groups[s.upazila].push(s)});
+  let html=`<h3 class="modal-title">🎤 রেকর্ডিং শুরু</h3><div class="modal-sub">কোন বিদ্যালয়ের জন্য রেকর্ড করবেন?</div>`;
+  html+=`<div class="field"><label>উপজেলা</label><select id="r-upz"><option value="">— নির্বাচন —</option>`;
+  Object.keys(groups).sort().forEach(u=>{html+=`<option value="${u}">${u}</option>`});
+  html+=`</select></div><div class="field"><label>বিদ্যালয়</label><select id="r-sch"><option value="">—</option></select></div>`;
+  html+=`<button class="btn btn-primary btn-block" onclick="pickRecorderSchool()">🎤 রেকর্ডিং শুরু</button>`;
+  document.getElementById('modalBody').innerHTML=html;
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('r-upz').addEventListener('change',e=>{
+    const sel=document.getElementById('r-sch');
+    sel.innerHTML='<option value="">—</option>';
+    (groups[e.target.value]||[]).forEach(s=>{sel.insertAdjacentHTML('beforeend',`<option value="${s.id}">${s.name}</option>`)});
+  });
+}
+function pickRecorderSchool(){
+  const id=document.getElementById('r-sch').value;
+  if(!id){toast('বিদ্যালয় নির্বাচন করুন');return}
+  state.currentSchoolId=parseInt(id,10);
+  closeModal();
+  startRecording();
+}
+
+async function startRecording(){
+  if(state.rec && state.rec.active){toast('আগে চলতি রেকর্ডিং শেষ করুন');return}
+  if(!navigator.mediaDevices || !window.MediaRecorder){toast('⚠️ এই ব্রাউজারে অডিও রেকর্ডিং সমর্থিত নয়');return}
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const mime=MediaRecorder.isTypeSupported('audio/webm;codecs=opus')?'audio/webm;codecs=opus':
+               MediaRecorder.isTypeSupported('audio/webm')?'audio/webm':
+               MediaRecorder.isTypeSupported('audio/mp4')?'audio/mp4':'';
+    const recorder=new MediaRecorder(stream,mime?{mimeType:mime}:{});
+    state.rec={
+      active:true, recorder, stream, chunks:[],
+      startTime:Date.now(), pausedTime:0, paused:false, pausedStart:0,
+      schoolId:state.currentSchoolId, timer:null
+    };
+    recorder.ondataavailable=e=>{if(e.data.size>0)state.rec.chunks.push(e.data)};
+    recorder.onstop=()=>finalizeRecording();
+    recorder.start(1000);
+    showPanel();
+    tickTimer();
+  }catch(e){
+    toast('⚠️ মাইক্রোফোন অনুমতি দিন');
+    console.error(e);
+  }
+}
+function tickTimer(){
+  if(!state.rec || !state.rec.active)return;
+  const el=document.getElementById('recTimer');
+  if(el){
+    const r=state.rec;
+    let elapsed=r.paused?r.pausedTime-r.startTime:Date.now()-r.startTime-r.pausedTime;
+    if(elapsed<0)elapsed=0;
+    el.textContent=fmtTime(elapsed);
+  }
+  state.rec.timer=setTimeout(tickTimer,500);
+}
+function showPanel(){
+  document.getElementById('recFab').classList.add('hidden');
+  const panel=document.getElementById('recPanel');
+  const s=schoolById(state.rec.schoolId);
+  document.getElementById('recSchool').textContent='🏫 '+(s?s.name:'');
+  document.getElementById('recStatusText').textContent='রেকর্ডিং';
+  document.getElementById('recPauseBtn').textContent='⏸';
+  panel.classList.remove('paused','minimized');
+  panel.classList.add('show');
+  document.getElementById('recControls').style.display='flex';
+  document.getElementById('recSchool').style.display='block';
+  document.getElementById('recMinBtn').textContent='−';
+  state.panelMinimized=false;
+  // position
+  const p=state.panelPos;
+  if(p.x!==null){
+    panel.style.left=p.x+'px';
+    panel.style.top=p.y+'px';
+    panel.style.right='auto';
+    panel.style.bottom='auto';
+  } else {
+    panel.style.left='auto';
+    panel.style.right='16px';
+    panel.style.bottom='calc(90px + env(safe-area-inset-bottom))';
+    panel.style.top='auto';
+  }
+}
+function toggleMinimize(){
+  const panel=document.getElementById('recPanel');
+  state.panelMinimized=!state.panelMinimized;
+  panel.classList.toggle('minimized',state.panelMinimized);
+  document.getElementById('recControls').style.display=state.panelMinimized?'none':'flex';
+  document.getElementById('recSchool').style.display=state.panelMinimized?'none':'block';
+  document.getElementById('recMinBtn').textContent=state.panelMinimized?'□':'−';
+}
+function togglePause(){
+  if(!state.rec||!state.rec.active)return;
+  const r=state.rec;
+  if(!r.paused){
+    r.recorder.pause();
+    r.paused=true;
+    r.pausedStart=Date.now();
+    document.getElementById('recPauseBtn').textContent='▶';
+    document.getElementById('recStatusText').textContent='বিরতিতে';
+    document.getElementById('recPanel').classList.add('paused');
+  } else {
+    r.recorder.resume();
+    r.pausedTime+=(Date.now()-r.pausedStart);
+    r.paused=false;
+    document.getElementById('recPauseBtn').textContent='⏸';
+    document.getElementById('recStatusText').textContent='রেকর্ডিং';
+    document.getElementById('recPanel').classList.remove('paused');
+  }
+}
+function doneRecording(){
+  if(!state.rec||!state.rec.active)return;
+  state.rec.recorder.stop();
+  if(state.rec.stream)state.rec.stream.getTracks().forEach(t=>t.stop());
+}
+function cancelRecording(){
+  if(!confirm('রেকর্ডিং বাতিল করবেন?'))return;
+  const r=state.rec;
+  if(r.recorder && r.recorder.state!=='inactive')r.recorder.stop();
+  if(r.stream)r.stream.getTracks().forEach(t=>t.stop());
+  r.chunks=[];
+  cleanup();
+}
+async function finalizeRecording(){
+  const r=state.rec;
+  if(!r){cleanup();return}
+  if(!r.chunks.length){cleanup();toast('⚠️ অডিও ধরা পড়েনি');return}
+  const blob=new Blob(r.chunks,{type:r.chunks[0].type});
+  const dataUrl=await blobToDataURL(blob);
+  let duration;
+  if(r.paused){duration=r.pausedTime-r.startTime}
+  else{duration=Date.now()-r.startTime-r.pausedTime}
+  if(duration<0)duration=0;
+  const s=schoolById(r.schoolId);
+  const media={
+    id:'m_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
+    schoolId:r.schoolId,type:'audio',
+    title:'অডিও — '+(s?s.name:''),
+    person:'',date:new Date().toISOString().slice(0,10),
+    duration,size:blob.size,mime:blob.type,dataUrl,
+    createdAt:new Date().toISOString()
+  };
+  await dbPut('media',media);
+  await refreshData();
+  const sid=r.schoolId;
+  cleanup();
+  toast('✓ অডিও সংরক্ষিত');
+  if(document.getElementById('view-profile').classList.contains('active')&&state.currentSchoolId===sid)renderProfile();
+  renderHome();
+}
+function cleanup(){
+  const r=state.rec;
+  if(r && r.timer)clearTimeout(r.timer);
+  state.rec=null;
+  document.getElementById('recPanel').classList.remove('show','minimized','paused');
+  document.getElementById('recFab').classList.remove('hidden');
+  state.panelMinimized=false;
+}
+function blobToDataURL(blob){return new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(blob)})}
+
+/* ==================== DRAG ==================== */
+function makeDraggable(el,posKey,handleSelector){
+  const handle = handleSelector ? el.querySelector(handleSelector) : el;
+  if(!handle)return;
+  let startX=0,startY=0,startLeft=0,startTop=0,dragging=false,moved=false;
+
+  handle.addEventListener('pointerdown',e=>{
+    if(e.target.closest('button'))return;
+    dragging=true;moved=false;
+    const rect=el.getBoundingClientRect();
+    startX=e.clientX;startY=e.clientY;
+    startLeft=rect.left;startTop=rect.top;
+    handle.setPointerCapture(e.pointerId);
+  });
+  handle.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const dx=e.clientX-startX;
+    const dy=e.clientY-startY;
+    if(Math.abs(dx)>4||Math.abs(dy)>4)moved=true;
+    const maxX=window.innerWidth-el.offsetWidth-8;
+    const maxY=window.innerHeight-el.offsetHeight-8;
+    const newLeft=Math.max(8,Math.min(maxX,startLeft+dx));
+    const newTop=Math.max(8,Math.min(maxY,startTop+dy));
+    el.style.left=newLeft+'px';
+    el.style.top=newTop+'px';
+    el.style.right='auto';
+    el.style.bottom='auto';
+    e.preventDefault();
+  });
+  handle.addEventListener('pointerup',e=>{
+    if(!dragging)return;
+    dragging=false;
+    if(moved){
+      const rect=el.getBoundingClientRect();
+      state[posKey]={x:rect.left,y:rect.top};
+      el.dataset.dragged='1';
+      setTimeout(()=>delete el.dataset.dragged,200);
+    }
+  });
+  handle.addEventListener('pointercancel',()=>{dragging=false});
+}
+function initDraggables(){
+  const fab=document.getElementById('recFab');
+  const panel=document.getElementById('recPanel');
+  const fabPos=state.fabPos;
+  if(fabPos.x!==null){fab.style.left=fabPos.x+'px';fab.style.top=fabPos.y+'px';fab.style.right='auto';fab.style.bottom='auto'}
+  const panelPos=state.panelPos;
+  if(panelPos.x!==null){panel.style.left=panelPos.x+'px';panel.style.top=panelPos.y+'px';panel.style.right='auto';panel.style.bottom='auto'}
+  makeDraggable(fab,'fabPos');
+  makeDraggable(panel,'panelPos','#recDragBar');
+  // tap on minimized panel to restore
+  panel.addEventListener('click',e=>{
+    if(state.panelMinimized && !e.target.closest('button')){
+      toggleMinimize();
+    }
+  });
+}
+
+/* ==================== PHOTO ==================== */
+function quickPhoto(){
+  if(!state.currentSchoolId){toast('আগে প্রোফাইল খুলুন');return}
+  const inp=document.createElement('input');
+  inp.type='file';inp.accept='image/*';inp.capture='environment';
+  inp.onchange=e=>{
+    const f=e.target.files[0];
+    if(!f)return;
+    if(f.size>8*1024*1024)compressImage(f,1600,0.75).then(b=>savePhotoBlob(b));
+    else savePhotoBlob(f);
+  };
+  inp.click();
+}
+function compressImage(file,maxDim,quality){
+  return new Promise(res=>{
+    const img=new Image();const url=URL.createObjectURL(file);
+    img.onload=()=>{
+      URL.revokeObjectURL(url);
+      let w=img.width,h=img.height;
+      if(Math.max(w,h)>maxDim){const s=maxDim/Math.max(w,h);w=Math.round(w*s);h=Math.round(h*s)}
+      const c=document.createElement('canvas');c.width=w;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      c.toBlob(b=>res(b),'image/jpeg',quality);
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);res(file)};
+    img.src=url;
+  });
+}
+async function savePhotoBlob(blob){
+  const dataUrl=await blobToDataURL(blob);
+  const media={
+    id:'m_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
+    schoolId:state.currentSchoolId,type:'photo',title:'ছবি',
+    date:new Date().toISOString().slice(0,10),
+    size:blob.size,mime:blob.type,dataUrl,
+    createdAt:new Date().toISOString()
+  };
+  await dbPut('media',media);
+  await refreshData();
+  toast('✓ ছবি সেভ হয়েছে');
+  renderProfile();renderHome();
+}
+
+/* ==================== BACKUP / EXPORT ==================== */
+async function exportBackup(){
+  const pass=document.getElementById('backupPass').value;
+  await refreshData();
+  const payload={version:1,exportedAt:new Date().toISOString(),entries:state.entries,media:state.media};
+  const json=JSON.stringify(payload);
+  let output;
+  if(pass){try{output={encrypted:true,data:await encryptString(json,pass)}}catch(e){toast('⚠️ এনক্রিপশন ব্যর্থ');return}}
+  else output=payload;
+  const blob=new Blob([JSON.stringify(output)],{type:'application/json'});
+  downloadFile(`rangamati-backup-${new Date().toISOString().slice(0,10)}${pass?'.rkb':'.json'}`,blob);
+  toast('✓ ব্যাকআপ ডাউনলোড');
+}
+async function importBackup(ev){
+  const f=ev.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=async()=>{
+    try{
+      let obj=JSON.parse(r.result);
+      if(obj.encrypted){const pass=prompt('পাসওয়ার্ড:');if(!pass)return;obj=JSON.parse(await decryptString(obj.data,pass))}
+      if(!obj.entries||!obj.media){toast('⚠️ সঠিক ফাইল নয়');return}
+      if(!confirm('মার্জ করা হবে। চালিয়ে যাবেন?'))return;
+      const exE=new Set(state.entries.map(e=>e.id));
+      const exM=new Set(state.media.map(m=>m.id));
+      for(const e of obj.entries)if(!exE.has(e.id))await dbPut('entries',e);
+      for(const m of obj.media)if(!exM.has(m.id))await dbPut('media',m);
+      await refreshData();
+      toast('✓ ইমপোর্ট সম্পন্ন');
+      renderHome();renderSchools();
+    }catch(e){toast('⚠️ ফাইল পড়া যায়নি')}
+  };
+  r.readAsText(f);ev.target.value='';
+}
+async function getKey(pass){const enc=new TextEncoder();const km=await crypto.subtle.importKey('raw',enc.encode(pass),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:enc.encode('rangamati_salt_v2'),iterations:100000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function encryptString(str,pass){const key=await getKey(pass);const iv=crypto.getRandomValues(new Uint8Array(12));const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(str));return{iv:Array.from(iv),ct:Array.from(new Uint8Array(ct))}}
+async function decryptString(obj,pass){const key=await getKey(pass);const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:new Uint8Array(obj.iv)},key,new Uint8Array(obj.ct));return new TextDecoder().decode(pt)}
+function exportEntriesCSV(){
+  const rows=[['তারিখ','বিদ্যালয়','উপজেলা','ধরন','তথ্যদাতা','পদবি','মোবাইল','বিবরণ','সংখ্যা','ট্যাগ']];
+  state.entries.forEach(e=>{const s=schoolById(e.schoolId);rows.push([e.date||'',s?s.name:'',s?s.upazila:'',e.type||'',e.person||'',e.post||'',e.mobile||'',(e.body||'').replace(/\n/g,' '),e.numbers||'',(e.tags||[]).join('; ')])});
+  const csv='\uFEFF'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  downloadFile(`rangamati-entries-${Date.now()}.csv`,new Blob([csv],{type:'text/csv'}));
+  toast('✓ ডাউনলোড');
+}
+function exportSchoolsCSV(){
+  const rows=[['ক্রম','উপজেলা','প্রধান শিক্ষক','বিদ্যালয়','মোবাইল']];
+  SCHOOLS.forEach((s,i)=>rows.push([i+1,s.upazila,s.teacher,s.name,s.mobile]));
+  const csv='\uFEFF'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  downloadFile(`rangamati-schools-${Date.now()}.csv`,new Blob([csv],{type:'text/csv'}));
+  toast('✓ ডাউনলোড');
+}
+function downloadFile(name,blob){
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=name;
+  document.body.appendChild(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},100);
+}
+async function renderStorageInfo(){
+  await refreshData();
+  const entriesBytes=new Blob([JSON.stringify(state.entries)]).size;
+  const mediaBytes=state.media.reduce((a,b)=>a+(b.size||0),0);
+  let quota=null;
+  if(navigator.storage&&navigator.storage.estimate){try{quota=await navigator.storage.estimate()}catch(e){}}
+  document.getElementById('storageInfo').innerHTML=`<div style="font-size:13px;line-height:2">
+    <div>সাক্ষাৎকার: <strong>${bn(state.entries.length)}</strong> (${fmtSize(entriesBytes)})</div>
+    <div>মিডিয়া: <strong>${bn(state.media.length)}</strong> (${fmtSize(mediaBytes)})</div>
+    ${quota?`<div>মোট ব্যবহার: <strong>${fmtSize(quota.usage||0)}</strong> / ${fmtSize(quota.quota||0)}</div>`:''}
+  </div>`;
+}
+async function wipeAll(){
+  if(!confirm('সব স্থায়ীভাবে মুছে যাবে?'))return;
+  if(!confirm('আবার নিশ্চিত করুন!'))return;
+  await dbClear('entries');await dbClear('media');
+  await refreshData();toast('✓ সব মুছে ফেলা হয়েছে');
+  renderHome();renderSchools();renderStorageInfo();
+}
+
+/* ==================== PWA INSTALL ==================== */
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+});
+async function installApp(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    const choice=await deferredPrompt.userChoice;
+    if(choice.outcome==='accepted')toast('✓ ইনস্টল হচ্ছে...');
+    deferredPrompt=null;
+    return;
+  }
+  // fallback instructions
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isAndroid=/Android/.test(navigator.userAgent);
+  let msg='';
+  if(isIOS)msg='Safari-তে Share বাটন → "Add to Home Screen"';
+  else if(isAndroid)msg='Chrome মেনু (⋮) → "Install app" বা "Add to Home screen"';
+  else msg='Chrome মেনু → "Install" বা "Add to Home screen"';
+  toast('💡 '+msg);
+}
+
+/* ==================== UTIL ==================== */
+let toastT;
+function toast(m){const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2500)}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+
+/* ==================== INIT ==================== */
+async function init(){
+  await openDB();
+  // populate upazila dropdowns
+  UPAZILAS.forEach(u=>{
+    ['f-upazila','m-upazila','r-upazila'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el)el.insertAdjacentHTML('beforeend',`<option value="${u}">${u}</option>`);
+    });
+  });
+  // populate type filter
+  const types=['প্রধান শিক্ষক','সহকারী শিক্ষক','নতুন শিক্ষক','শিক্ষার্থী','অভিভাবক','স্থানীয় নেতা','SMC সদস্য','নোট','অন্যান্য'];
+  ['e-type','r-type'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)types.forEach(t=>el.insertAdjacentHTML('beforeend',`<option value="${t}">${t}</option>`));
+  });
+  // populate school select in collect
+  const csel=document.getElementById('c-school');
+  const groups={};SCHOOLS.forEach(s=>{groups[s.upazila]=groups[s.upazila]||[];groups[s.upazila].push(s)});
+  Object.keys(groups).sort().forEach(u=>{
+    const og=document.createElement('optgroup');og.label=u;
+    groups[u].forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=s.name;og.appendChild(o)});
+    csel.appendChild(og);
+  });
+
+  await refreshData();
+  renderHome();renderSchools();
+  initDraggables();
+
+  // Filter listeners
+  document.getElementById('f-upazila').addEventListener('change',e=>{
+    state.schoolUpazila=e.target.value;
+    state.schoolShown=30;
+    renderSchools();
+  });
+  document.getElementById('f-search').addEventListener('input',()=>{state.schoolShown=30;renderSchools()});
+  document.getElementById('f-coverage').addEventListener('change',()=>{state.schoolShown=30;renderSchools()});
+  document.getElementById('f-status').addEventListener('change',()=>{state.schoolShown=30;renderSchools()});
+}
+document.addEventListener('DOMContentLoaded',init);
+window.addEventListener('beforeunload',()=>{
+  if(state.rec&&state.rec.stream)state.rec.stream.getTracks().forEach(t=>t.stop());
+});
+</script>
+</body>
+</html>

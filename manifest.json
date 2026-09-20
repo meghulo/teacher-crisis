@@ -1,0 +1,32 @@
+{
+  "name": "শিক্ষক সংকট — রাঙামাটি",
+  "short_name": "শিক্ষক সংকট",
+  "description": "রাঙামাটির ৭০৭টি প্রাথমিক বিদ্যালয়ের তথ্যভাণ্ডার",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f2e5a",
+  "theme_color": "#0f2e5a",
+  "lang": "bn",
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
